@@ -74,8 +74,9 @@
   /* Cartes (valeurs, stats) : rose foncé plein, icônes et texte en clair pour le contraste */
   .cel-card { background: var(--cel-pink-dark); color: #fff; border-radius: 8px; padding: 1.75rem; }
   .cel-card .cel-icon svg { stroke: #fff; }
-  /* Cadre rose clair qui suit le texte, ne prend pas toute la largeur de la page */
-  .cel-card-soft { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; margin: var(--cel-space-block) 0; }
+  /* Cadre rose clair qui suit le texte, ne prend pas toute la largeur de la page.
+     Hauteur alignée sur la case "Soin universel" (272px mesurés) pour une taille cohérente entre toutes les cases. */
+  .cel-card-soft { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; margin: var(--cel-space-block) 0; min-height: 17rem; display: flex; flex-direction: column; justify-content: center; }
   /* Cadre utilisé comme colonne de texte dans un bloc alterné : l'image reste hors du rectangle rose */
   .cel-flex > .cel-card-soft { margin: 0; }
 
