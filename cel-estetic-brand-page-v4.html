@@ -67,10 +67,25 @@
   .cel-flex.top { align-items: flex-start; }
   .cel-flex > * { flex: 1 1 0; min-width: 0; }
 
-  /* Image réduite de 50% (colonne à 320px au lieu d'un partage 50/50 ~650px) : les cases + le texte prennent le reste */
-  .cel-flex-img-half > *:first-child { flex: 0 1 320px; }
+  /* Image agrandie (x2 par rapport à la version précédente à 320px), colonnes étirées à la même hauteur */
+  .cel-flex-img-frame { align-items: stretch; margin: 0; gap: 0; }
+  .cel-flex-img-frame > *:last-child { position: relative; }
   @media (max-width: 749px) {
-    .cel-flex-img-half > *:first-child { flex: 1 1 auto; }
+    .cel-flex-img-frame { margin: 2.5rem 0; }
+  }
+
+  /* Image sans marge à droite (déborde jusqu'au bord de la page) ni en bas (touche le bas du bandeau gris),
+     mais avec 100px de marge en haut et à gauche (espace avec le texte voisin).
+     Hauteur/largeur en % explicites : une <img> est un élément remplacé, top/bottom seuls ne l'étirent pas. */
+  img.cel-img-bleed-right {
+    position: absolute; top: 100px;
+    right: calc(-1 * var(--cel-align-pad));
+    width: calc(100% - 100px + var(--cel-align-pad));
+    height: calc(100% - 100px + var(--cel-space-block));
+    max-width: none; object-fit: cover;
+  }
+  @media (max-width: 749px) {
+    img.cel-img-bleed-right { position: static; width: 100%; height: auto; top: auto; right: auto; }
   }
 
   .cel-quote { font-style: italic; border-left: 3px solid currentColor; padding-left: 1rem; margin: 1.5rem 0; }
@@ -193,30 +208,31 @@
     <img src="" alt="Univers de la marque Celestetic, institut, soin, packaging">
   </div>
 
-  <!-- 03, Certifications & preuves scientifiques : intro au-dessus, image réduite + cases à droite en dessous -->
+  <!-- 03, Certifications & preuves scientifiques : texte + cases sur la même ligne, image agrandie à côté du texte suivant -->
   <div class="cel-section cel-band">
-    <h2>Une qualité prouvée, pas seulement affirmée</h2>
-    <p>Celestetic fabrique ses produits selon des normes de qualité pharmaceutique, et soutient chacune de ses promesses par des données cliniques.</p>
-
-    <div class="cel-flex cel-flex-img-half">
+    <div class="cel-flex top">
       <div>
-        <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Soins_Multi_technique.webp?v=1788963807" alt="Certificats ISO 9001:2015 et ISO 22716 de Celestetic">
+        <h2>Une qualité prouvée, pas seulement affirmée</h2>
+        <p>Celestetic fabrique ses produits selon des normes de qualité pharmaceutique, et soutient chacune de ses promesses par des données cliniques.</p>
       </div>
-      <div>
-        <div class="cel-stack">
-          <div class="cel-card-light cel-stat">
-            <div class="cel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
-            <div><strong>ISO 9001:2015</strong>Norme de management de la qualité</div>
-          </div>
-          <div class="cel-card-light cel-stat">
-            <div class="cel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
-            <div><strong>ISO 22716</strong>Bonnes pratiques de fabrication cosmétique</div>
-          </div>
-          <div class="cel-card-light cel-stat">
-            <div class="cel-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 5l5 4 4-6 4 8 3-3"/></svg></div>
-            <div><strong>13+</strong>Études scientifiques cliniques</div>
-          </div>
+      <div class="cel-stack">
+        <div class="cel-card-light cel-stat">
+          <div class="cel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
+          <div><strong>ISO 9001:2015</strong>Norme de management de la qualité</div>
         </div>
+        <div class="cel-card-light cel-stat">
+          <div class="cel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
+          <div><strong>ISO 22716</strong>Bonnes pratiques de fabrication cosmétique</div>
+        </div>
+        <div class="cel-card-light cel-stat">
+          <div class="cel-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 5l5 4 4-6 4 8 3-3"/></svg></div>
+          <div><strong>13+</strong>Études scientifiques cliniques</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cel-flex cel-flex-img-frame">
+      <div>
         <h3>Une reconnaissance internationale</h3>
         <p>Les résultats cliniques et l'innovation de Celestetic ont été récompensés à plusieurs reprises :</p>
         <ul class="cel-awards">
@@ -225,6 +241,9 @@
           <li>Belgian Beauty Award 2020, Active Peel</li>
         </ul>
         <p>Celestetic est aujourd'hui présente dans plus de 20 pays.</p>
+      </div>
+      <div>
+        <img class="cel-img-bleed-right" src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Soins_Multi_technique.webp?v=1788963807" alt="Certificats ISO 9001:2015 et ISO 22716 de Celestetic">
       </div>
     </div>
   </div>
