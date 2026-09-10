@@ -79,11 +79,10 @@
   /* Cadre utilisé comme colonne de texte dans un bloc alterné : l'image reste hors du rectangle rose */
   .cel-flex > .cel-card-soft { margin: 0; }
 
-  /* Colonne image agrandie de 200% (x2) une troisième fois ; la case rose (flex:1 1 0) s'adapte automatiquement en retrait */
-  .cel-flex-img-xs > *:last-child { flex: 0 1 80%; min-width: 400px; }
+  /* Colonne image agrandie de 200% (x2) une seconde fois ; la case rose (flex:1 1 0) s'adapte automatiquement en retrait */
+  .cel-flex-img-xs > *:last-child { flex: 0 1 40%; min-width: 400px; }
   @media (max-width: 749px) {
-    /* déjà proche du maximum praticable sur mobile (colonnes empilées) : passe en pleine largeur */
-    .cel-flex-img-xs > *:last-child { flex: 0 1 auto; width: 100%; max-width: none; margin: 0; }
+    .cel-flex-img-xs > *:last-child { flex: 0 1 auto; width: 85%; max-width: 400px; margin: 0 auto; }
   }
 
   .cel-stat { text-align: left; display: flex; gap: 1rem; align-items: center; }
