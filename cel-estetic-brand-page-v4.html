@@ -23,8 +23,9 @@
   .cel-section { margin-bottom: var(--cel-space-section); }
   .cel-section:last-child { margin-bottom: 0; }
 
-  /* Bandeau de fond très léger en pleine largeur : casse l'effet "page blanche" entre les sections colorées */
-  .cel-band { position: relative; padding: var(--cel-space-block) var(--cel-align-pad); margin-bottom: calc(var(--cel-space-section) - var(--cel-space-block)); }
+  /* Bandeau de fond très léger en pleine largeur : casse l'effet "page blanche" entre les sections colorées.
+     Padding horizontal à 0 : le contenu reste dans le flux normal de .cel-page (déjà marginé), seul le fond sort en pleine largeur. */
+  .cel-band { position: relative; padding: var(--cel-space-block) 0; margin-bottom: calc(var(--cel-space-section) - var(--cel-space-block)); }
   .cel-band::before {
     content: ""; position: absolute; top: 0; bottom: 0; left: 50%; right: 50%;
     width: 100vw; margin-left: -50vw; margin-right: -50vw;
