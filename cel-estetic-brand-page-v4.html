@@ -86,10 +86,10 @@
   /* Cadre utilisé comme colonne de texte dans un bloc alterné : l'image reste hors du rectangle rose */
   .cel-flex > .cel-card-soft { margin: 0; }
 
-  /* Liste à croix encadrée : chaque élément dans sa propre case rose foncé */
-  .cel-list-cross-boxed { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
-  .cel-list-cross-boxed li { display: flex; gap: 0.6rem; align-items: center; }
-  .cel-list-cross-boxed svg { flex: none; width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+  /* Liste à croix encadrée : chaque élément dans sa propre case rose foncé (format compact) */
+  .cel-list-cross-boxed { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+  .cel-list-cross-boxed li { display: flex; gap: 0.5rem; align-items: center; background: var(--cel-pink-dark); color: #fff; border-radius: 8px; padding: 0.65rem 1rem; font-size: 0.9em; }
+  .cel-list-cross-boxed svg { flex: none; width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
 
   .cel-stat { text-align: left; display: flex; gap: 1rem; align-items: center; }
   .cel-stat .cel-icon { margin-bottom: 0; flex: none; }
@@ -219,7 +219,7 @@
 
   <!-- 04, Les bienfaits -->
   <div class="cel-section">
-    <div class="cel-flex">
+    <div class="cel-flex cel-flex-match-media">
       <div class="cel-card-soft">
         <h2>Une concentration active pensée pour des résultats visibles</h2>
         <p>Les produits Celestetic sont formulés selon une approche cosméceutique : ils peuvent contenir jusqu'à 30 % de principes actifs, une concentration nettement supérieure à celle des cosmétiques classiques, pour des résultats visibles et mesurables sur la peau.</p>
@@ -229,7 +229,7 @@
       </div>
     </div>
 
-    <div class="cel-flex reverse cel-flex-match-media">
+    <div class="cel-flex reverse">
       <div>
         <h3>La technologie BIO-BLEND™</h3>
         <p>Le cœur de l'innovation Celestetic repose sur la technologie BIO-BLEND™, qui associe :</p>
@@ -244,27 +244,25 @@
       </div>
     </div>
 
-    <div class="cel-card-soft">
-      <div class="cel-flex">
-        <div>
-          <h3>Des formules pensées pour la sécurité de la peau</h3>
-          <p>Celestetic s'engage sur une liste précise d'ingrédients exclus de ses formules :</p>
-        </div>
-        <ul class="cel-list-cross-boxed">
-          <li class="cel-card"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Alcool, allergènes, microplastiques</li>
-          <li class="cel-card"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Colorants synthétiques</li>
-          <li class="cel-card"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Petrolatum &amp; silicones</li>
-          <li class="cel-card"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Formaldéhyde &amp; thiazolinones</li>
-          <li class="cel-card"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>SLS / SLES / DEA / TEA et tensioactifs agressifs</li>
-        </ul>
+    <div class="cel-flex">
+      <div>
+        <h3>Des formules pensées pour la sécurité de la peau</h3>
+        <p>Celestetic s'engage sur une liste précise d'ingrédients exclus de ses formules :</p>
       </div>
+      <ul class="cel-list-cross-boxed">
+        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Alcool, allergènes, microplastiques</li>
+        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Colorants synthétiques</li>
+        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Petrolatum &amp; silicones</li>
+        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Formaldéhyde &amp; thiazolinones</li>
+        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>SLS / SLES / DEA / TEA et tensioactifs agressifs</li>
+      </ul>
     </div>
     </div>
 
 <style>
   .cel-results-title { text-transform: uppercase; font-weight: 700; font-size: 1.4em; margin-bottom: 2.5rem; }
   .cel-results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
-  .cel-badge { display: inline-block; background: var(--cel-pink-light); color: var(--cel-pink-dark); font-weight: 600; font-size: 0.85em; padding: 0.5rem 0.9rem; border-radius: 4px; margin-bottom: 1rem; }
+  .cel-badge { display: block; text-align: left; background: var(--cel-pink-light); color: #000; font-weight: 600; font-size: 0.85em; padding: 0.5rem 0.9rem; border-radius: 4px; margin-bottom: 1rem; }
   .cel-results-grid p { font-size: 0.95em; margin-bottom: 1.5rem; }
   .cel-ba-pair { display: flex; gap: 0.5rem; }
   .cel-ba-slot { flex: 1 1 0; text-align: center; }
