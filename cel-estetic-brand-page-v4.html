@@ -74,8 +74,10 @@
   @media (max-width: 749px) {
     .cel-flex-img-sm > *:last-child { flex: 1 1 auto; }
   }
-  /* Les deux colonnes prennent la même hauteur : nécessaire pour que le calcul du débordement bas soit fiable */
+  /* Les deux colonnes prennent la même hauteur : nécessaire pour que le calcul du débordement bas soit fiable.
+     Le texte est ensuite centré verticalement à l'intérieur de cette hauteur, donc par rapport au centre de l'image. */
   .cel-flex-img-sm { align-items: stretch; }
+  .cel-flex-img-sm > *:first-child { display: flex; flex-direction: column; justify-content: center; }
 
   /* Étire l'image depuis son coin gauche jusqu'au bord de la page (ignore la marge du site), et depuis son coin
      bas jusqu'au bas de la séparation grise (.cel-band) : asymétrie volontaire des deux côtés.
