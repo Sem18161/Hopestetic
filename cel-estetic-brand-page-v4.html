@@ -11,11 +11,13 @@
     --cel-align-pad: max(var(--cel-page-pad), calc((100vw - var(--cel-page-max)) / 2 + var(--cel-page-pad)));
   }
 
+  /* Les bordures/paddings ne débordent plus des largeurs fixées : les cadres s'alignent pile avec le texte */
+  .cel-page, .cel-page *, .cel-page *::before, .cel-page *::after { box-sizing: border-box; }
+
   .cel-page { max-width: var(--cel-page-max); margin: 0 auto; padding: 4rem var(--cel-page-pad); font-family: 'Poppins', sans-serif; line-height: 1.6; }
   .cel-section { margin-bottom: var(--cel-space-section); }
   .cel-section:last-child { margin-bottom: 0; }
-  .cel-section > p, .cel-section > h2, .cel-section > h3, .cel-section > .cel-card-soft,
-  .cel-tinted > h1, .cel-tinted > h2, .cel-tinted > h3, .cel-tinted > p { max-width: 700px; }
+  .cel-section > p, .cel-section > h2, .cel-section > h3, .cel-section > .cel-card-soft { max-width: 700px; }
   .cel-center { text-align: center; margin-left: auto; margin-right: auto; }
 
   /* Rythme vertical harmonisé : même espace titre -> texte partout, et un espace net avant chaque nouveau bloc */
@@ -27,24 +29,20 @@
   .cel-section > h3:not(:first-child) { margin-top: var(--cel-space-block); }
   .cel-section > img { display: block; margin: var(--cel-space-block) 0; }
 
-  /* Bandeau plein largeur rose clair : titre + texte seuls, sans image, aligné à gauche et sur le même axe que le reste du texte */
-  .cel-tinted { background: var(--cel-pink-light); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: var(--cel-space-block) var(--cel-align-pad); text-align: left; }
-
   /* Image pleine largeur, sort du conteneur */
   .cel-full-bleed { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-bottom: 5rem; }
   .cel-full-bleed img { width: 100%; height: auto; max-height: 65vh; object-fit: cover; display: block; }
 
-  /* Héro : titre directement sur l'image, sans cadre, aligné avec le reste du texte */
+  /* Héro : titre directement sur l'image, sans cadre. Titre en haut à droite, sous-titre en bas à gauche */
   .cel-hero-image { margin-bottom: 5rem; }
   .cel-hero-image img { aspect-ratio: 16 / 9; max-height: none; object-fit: cover; background: var(--cel-hero-grey); }
   .cel-hero-overlay {
     position: absolute; inset: 0;
-    display: flex; flex-direction: column; justify-content: flex-end;
     padding: var(--cel-space-block) var(--cel-align-pad);
-    background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 65%);
+    background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 40%), linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,0) 40%);
   }
-  .cel-hero-overlay h1 { color: #fff; font-size: clamp(2.5rem, 6vw, 4rem); margin: 0 0 0.75rem; max-width: 700px; }
-  .cel-hero-overlay p { color: #fff; margin: 0; max-width: 700px; }
+  .cel-hero-overlay h1 { position: absolute; top: var(--cel-space-block); right: var(--cel-align-pad); left: var(--cel-align-pad); text-align: right; color: #fff; font-size: clamp(5rem, 12vw, 8rem); line-height: 1.05; margin: 0; }
+  .cel-hero-overlay p { position: absolute; bottom: var(--cel-space-block); left: var(--cel-align-pad); text-align: left; color: #fff; margin: 0; max-width: 700px; font-size: clamp(1.25rem, 2.8vw, 2.25rem); }
 
   .cel-section img { width: 100%; height: auto; border-radius: 4px; }
 
@@ -78,6 +76,10 @@
   .cel-card .cel-icon svg { stroke: #fff; }
   /* Cadre rose clair qui suit le texte, ne prend pas toute la largeur de la page */
   .cel-card-soft { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; margin: var(--cel-space-block) 0; }
+  /* Variante qui englobe un bloc texte + image (donc plus large qu'un simple paragraphe) */
+  .cel-section > .cel-card-soft.cel-card-media { max-width: none; }
+  .cel-card-media .cel-flex { margin: 0; }
+  .cel-card-media img { display: block; }
 
   .cel-stat { text-align: left; display: flex; gap: 1rem; align-items: center; }
   .cel-stat .cel-icon { margin-bottom: 0; flex: none; }
@@ -100,6 +102,10 @@
   @media (max-width: 749px) {
     .cel-cols-2, .cel-cols-3, .cel-cols-4, .cel-list-cross { grid-template-columns: 1fr; }
     .cel-flex, .cel-flex.reverse { flex-direction: column; }
+    /* Le crop 16:9 devient trop bas pour le titre + sous-titre : on garde une hauteur minimale */
+    .cel-hero-image img { aspect-ratio: auto; min-height: 420px; }
+    .cel-hero-overlay h1 { font-size: clamp(2.25rem, 10vw, 3.5rem); }
+    .cel-hero-overlay p { font-size: clamp(1rem, 4vw, 1.5rem); }
   }
 </style>
 
@@ -116,7 +122,7 @@
 
   <!-- 01, Notre histoire -->
   <div class="cel-section">
-    <div class="cel-tinted">
+    <div class="cel-card-soft">
       <h2>Une marque née d'une conviction scientifique</h2>
       <p>En 2013, les entrepreneurs belges Bernard Van Acker et Gabriele Gavazzi fondent Celestetic avec une conviction simple : créer des soins qui allient l'exigence de la cosmétique à la rigueur de la science et inspirés par le concept de cosméceutique.</p>
     </div>
@@ -135,7 +141,7 @@
 
   <!-- 02, Nos valeurs -->
   <div class="cel-section">
-    <h2 class="cel-center">Trois exigences, aucun compromis</h2>
+    <h2>Trois exigences, aucun compromis</h2>
 
     <div class="cel-cols-3">
       <div class="cel-card">
@@ -202,13 +208,15 @@
 
   <!-- 04, Les bienfaits -->
   <div class="cel-section">
-    <div class="cel-flex">
-      <div>
-        <h2>Une concentration active pensée pour des résultats visibles</h2>
-        <p>Les produits Celestetic sont formulés selon une approche cosméceutique : ils peuvent contenir jusqu'à 30 % de principes actifs, une concentration nettement supérieure à celle des cosmétiques classiques, pour des résultats visibles et mesurables sur la peau.</p>
-      </div>
-      <div>
-        <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Comparatif_des_principes_actifs_entre_celestetic_et_ses_concurents.png?v=1788964125" alt="Résultats visibles d'un soin Celestetic sur la peau">
+    <div class="cel-card-soft cel-card-media">
+      <div class="cel-flex">
+        <div>
+          <h2>Une concentration active pensée pour des résultats visibles</h2>
+          <p>Les produits Celestetic sont formulés selon une approche cosméceutique : ils peuvent contenir jusqu'à 30 % de principes actifs, une concentration nettement supérieure à celle des cosmétiques classiques, pour des résultats visibles et mesurables sur la peau.</p>
+        </div>
+        <div>
+          <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Comparatif_des_principes_actifs_entre_celestetic_et_ses_concurents.png?v=1788964125" alt="Résultats visibles d'un soin Celestetic sur la peau">
+        </div>
       </div>
     </div>
 
