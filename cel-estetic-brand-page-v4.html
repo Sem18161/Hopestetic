@@ -41,7 +41,6 @@
   .cel-page p { margin: 0 0 1.25rem; }
   .cel-page p:last-child, .cel-page ul:last-child { margin-bottom: 0; }
   .cel-section > h3:not(:first-child) { margin-top: var(--cel-space-block); }
-  .cel-stack + h3 { margin-top: var(--cel-space-block); }
   .cel-section > img { display: block; margin: var(--cel-space-block) 0; }
 
   /* Image pleine largeur, sort du conteneur */
@@ -67,25 +66,29 @@
   .cel-flex.top { align-items: flex-start; }
   .cel-flex > * { flex: 1 1 0; min-width: 0; }
 
-  /* Image agrandie (x2 par rapport à la version précédente à 320px), colonnes étirées à la même hauteur */
-  .cel-flex-img-frame { align-items: stretch; margin: 0; gap: 0; }
-  .cel-flex-img-frame > *:last-child { position: relative; }
+  /* Image réduite dans un bloc alterné, le texte prend le reste de la place */
+  .cel-flex-img-sm > *:last-child { flex: 0 1 320px; position: relative; }
   @media (max-width: 749px) {
-    .cel-flex-img-frame { margin: 2.5rem 0; }
+    .cel-flex-img-sm > *:last-child { flex: 1 1 auto; }
   }
+  /* Les deux colonnes prennent la même hauteur : nécessaire pour que le calcul du débordement bas soit fiable */
+  .cel-flex-img-sm { align-items: stretch; }
 
-  /* Image sans marge à droite (déborde jusqu'au bord de la page) ni en bas (touche le bas du bandeau gris),
-     mais avec 100px de marge en haut et à gauche (espace avec le texte voisin).
-     Hauteur/largeur en % explicites : une <img> est un élément remplacé, top/bottom seuls ne l'étirent pas. */
-  img.cel-img-bleed-right {
-    position: absolute; top: 100px;
-    right: calc(-1 * var(--cel-align-pad));
-    width: calc(100% - 100px + var(--cel-align-pad));
-    height: calc(100% - 100px + var(--cel-space-block));
+  /* Étire l'image depuis son coin gauche jusqu'au bord de la page (ignore la marge du site), et depuis son coin
+     bas jusqu'au bas de la séparation grise (.cel-band) : asymétrie volontaire des deux côtés.
+     Un peu de largeur est retirée pour laisser un espace avec le texte voisin.
+     Hauteur en % explicite (pas top+bottom+auto) : une <img> est un élément remplacé, top/bottom ne l'étire pas,
+     sa hauteur resterait calculée depuis son propre ratio d'aspect.
+     +2x --cel-space-block : la propre marge basse de la ligne (.cel-flex) PLUS le padding bas de .cel-band. */
+  img.cel-img-bleed-left {
+    position: absolute; top: 0;
+    left: calc(-1 * var(--cel-align-pad));
+    width: calc(100% + var(--cel-align-pad) - 2rem);
+    height: calc(100% + (var(--cel-space-block) * 2));
     max-width: none; object-fit: cover;
   }
   @media (max-width: 749px) {
-    img.cel-img-bleed-right { position: static; width: 100%; height: auto; top: auto; right: auto; }
+    img.cel-img-bleed-left { position: static; width: 100%; height: auto; }
   }
 
   .cel-quote { font-style: italic; border-left: 3px solid currentColor; padding-left: 1rem; margin: 1.5rem 0; }
@@ -208,7 +211,7 @@
     <img src="" alt="Univers de la marque Celestetic, institut, soin, packaging">
   </div>
 
-  <!-- 03, Certifications & preuves scientifiques : texte + cases sur la même ligne, image agrandie à côté du texte suivant -->
+  <!-- 03, Certifications & preuves scientifiques -->
   <div class="cel-section cel-band">
     <div class="cel-flex top">
       <div>
@@ -231,7 +234,7 @@
       </div>
     </div>
 
-    <div class="cel-flex cel-flex-img-frame">
+    <div class="cel-flex reverse cel-flex-img-sm">
       <div>
         <h3>Une reconnaissance internationale</h3>
         <p>Les résultats cliniques et l'innovation de Celestetic ont été récompensés à plusieurs reprises :</p>
@@ -243,7 +246,7 @@
         <p>Celestetic est aujourd'hui présente dans plus de 20 pays.</p>
       </div>
       <div>
-        <img class="cel-img-bleed-right" src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Soins_Multi_technique.webp?v=1788963807" alt="Certificats ISO 9001:2015 et ISO 22716 de Celestetic">
+        <img class="cel-img-bleed-left" src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Soins_Multi_technique.webp?v=1788963807" alt="Certificats ISO 9001:2015 et ISO 22716 de Celestetic">
       </div>
     </div>
   </div>
