@@ -2,6 +2,9 @@
   :root {
     --cel-pink-light: #fee9ec;
     --cel-pink-dark: #65011e;
+    /* Teintes de survol : un vrai changement de couleur, pas juste plus sombre */
+    --cel-pink-light-hover: #fad0d8;
+    --cel-pink-dark-hover: #8a1338;
     --cel-hero-grey: #b5bec9;
     --cel-space-section: 5rem;
     --cel-space-block: 2.5rem;
@@ -10,7 +13,7 @@
     /* aligne le contenu qui sort du conteneur (bandeaux, cadres) sur le même bord que le texte du site */
     --cel-align-pad: max(var(--cel-page-pad), calc((100vw - var(--cel-page-max)) / 2 + var(--cel-page-pad)));
     /* Teinte très légère (dérivée du gris de la bannière) pour rythmer la page sans concurrencer le rose */
-    --cel-bg-tint: color-mix(in srgb, var(--cel-hero-grey) 12%, white);
+    --cel-bg-tint: color-mix(in srgb, var(--cel-hero-grey) 7%, white);
   }
 
   /* Les bordures/paddings ne débordent plus des largeurs fixées : les cadres s'alignent pile avec le texte */
@@ -92,14 +95,15 @@
   /* Cadre utilisé comme colonne de texte dans un bloc alterné : l'image reste hors du rectangle rose */
   .cel-flex > .cel-card-soft { margin: 0; }
 
-  /* Liste à croix encadrée : chaque élément dans sa propre case rose foncé (format compact) */
+  /* Liste "SANS ..." encadrée : chaque élément dans sa propre case rose foncé (format compact) */
   .cel-list-cross-boxed { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
   .cel-list-cross-boxed li { display: flex; gap: 0.5rem; align-items: center; background: var(--cel-pink-dark); color: #fff; border-radius: 8px; padding: 0.65rem 1rem; font-size: 0.9em; }
+  .cel-list-cross-boxed em { font-style: italic; font-weight: 700; flex: none; }
 
-  /* Survol : la teinte de toutes les cases s'assombrit (~2 crans) pour accentuer l'information au passage de la souris */
-  .cel-card, .cel-card-light, .cel-card-soft, .cel-list-cross-boxed li, .cel-badge { transition: filter 0.2s ease; }
-  .cel-card:hover, .cel-card-light:hover, .cel-card-soft:hover, .cel-list-cross-boxed li:hover, .cel-badge:hover { filter: brightness(0.85); }
-  .cel-list-cross-boxed svg { flex: none; width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+  /* Survol : léger changement de teinte (pas un simple assombrissement) + le texte grossit */
+  .cel-card, .cel-card-light, .cel-card-soft, .cel-list-cross-boxed li, .cel-badge { transition: background-color 0.2s ease, transform 0.2s ease; transform: scale(1); }
+  .cel-card:hover, .cel-list-cross-boxed li:hover { background: var(--cel-pink-dark-hover); transform: scale(1.06); }
+  .cel-card-light:hover, .cel-card-soft:hover, .cel-badge:hover { background: var(--cel-pink-light-hover); transform: scale(1.06); }
 
   .cel-stat { text-align: left; display: flex; gap: 1rem; align-items: center; }
   .cel-stat .cel-icon { margin-bottom: 0; flex: none; }
@@ -260,18 +264,18 @@
         <p>Celestetic s'engage sur une liste précise d'ingrédients exclus de ses formules :</p>
       </div>
       <ul class="cel-list-cross-boxed">
-        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Alcool, allergènes, microplastiques</li>
-        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Colorants synthétiques</li>
-        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Petrolatum &amp; silicones</li>
-        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Formaldéhyde &amp; thiazolinones</li>
-        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>SLS / SLES / DEA / TEA et tensioactifs agressifs</li>
+        <li><em>SANS</em>Alcool, allergènes, microplastiques</li>
+        <li><em>SANS</em>Colorants synthétiques</li>
+        <li><em>SANS</em>Petrolatum &amp; silicones</li>
+        <li><em>SANS</em>Formaldéhyde &amp; thiazolinones</li>
+        <li><em>SANS</em>SLS / SLES / DEA / TEA et tensioactifs agressifs</li>
       </ul>
     </div>
     </div>
 
 <style>
   .cel-results-title { text-transform: uppercase; font-weight: 700; font-size: 1.4em; margin-bottom: 2.5rem; }
-  .cel-results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+  .cel-results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5rem; }
   /* Même taille de police que le texte en dessous, et même retrait à gauche (2 espaces) pour les deux, donc toujours alignés entre eux */
   .cel-badge { display: block; text-align: left; background: var(--cel-pink-light); color: #000; font-weight: 600; font-size: 0.95em; padding: 0.6rem 0.9rem 0.6rem 1rem; border-radius: 4px; margin-bottom: 1rem; }
   .cel-results-grid p { font-size: 0.95em; margin-bottom: 1.5rem; padding-left: 1rem; }
