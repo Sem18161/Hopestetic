@@ -1,0 +1,277 @@
+<style>
+  .cel-page { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem; font-family: 'Poppins', sans-serif; }
+  .cel-section { margin-bottom: 5rem; }
+  .cel-section > p, .cel-section > h2, .cel-section > h3 { max-width: 700px; }
+  .cel-center { text-align: center; margin-left: auto; margin-right: auto; }
+
+  /* Image pleine largeur, sort du conteneur */
+  .cel-full-bleed { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-bottom: 5rem; }
+  .cel-full-bleed img { width: 100%; height: auto; max-height: 65vh; object-fit: cover; display: block; }
+
+  .cel-section img { width: 100%; height: auto; border-radius: 4px; }
+
+  /* Blocs alternés image / texte */
+  .cel-flex { display: flex; gap: 3rem; align-items: center; margin: 2.5rem 0; }
+  .cel-flex.reverse { flex-direction: row-reverse; }
+  .cel-flex.top { align-items: flex-start; }
+  .cel-flex > * { flex: 1 1 0; min-width: 0; }
+
+  .cel-quote { font-style: italic; border-left: 3px solid currentColor; padding-left: 1rem; margin: 1.5rem 0; }
+  .cel-quote cite { display: block; font-style: normal; margin-top: 0.5rem; font-size: 0.9em; opacity: 0.8; }
+
+  /* Icônes */
+  .cel-icon { width: 40px; height: 40px; margin-bottom: 0.75rem; }
+  .cel-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+  .cel-cols-2, .cel-cols-3, .cel-cols-4 { display: grid; gap: 2rem; margin: 1.5rem 0; }
+  .cel-cols-2 { grid-template-columns: 1fr 1fr; }
+  .cel-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cel-cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .cel-stack { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  /* Cartes (valeurs, stats) */
+  .cel-card { border: 1px solid currentColor; border-color: color-mix(in srgb, currentColor 20%, transparent); border-radius: 8px; padding: 1.75rem; }
+  .cel-card-soft { background: color-mix(in srgb, currentColor 5%, transparent); border-radius: 8px; padding: 1.75rem; }
+
+  .cel-stat { text-align: left; display: flex; gap: 1rem; align-items: center; }
+  .cel-stat .cel-icon { margin-bottom: 0; flex: none; }
+  .cel-stat strong { display: block; font-size: 1.3em; }
+
+  .cel-list-numbered { list-style: none; margin: 1.5rem 0; padding: 0; display: grid; gap: 1.25rem; }
+  .cel-list-numbered li { display: flex; gap: 1rem; align-items: flex-start; }
+  .cel-list-numbered .cel-num { flex: none; width: 2rem; height: 2rem; border-radius: 50%; border: 1px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 0.85em; }
+
+  .cel-list-cross { list-style: none; margin: 1.5rem 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 2rem; }
+  .cel-list-cross li { display: flex; gap: 0.6rem; align-items: center; }
+  .cel-list-cross svg { flex: none; width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; opacity: 0.7; }
+
+  .cel-awards { list-style: none; margin: 1.5rem 0; padding: 0; display: grid; gap: 0.9rem; }
+  .cel-awards li { display: flex; gap: 0.75rem; align-items: baseline; }
+  .cel-awards li::before { content: "★"; flex: none; }
+
+  .cel-button { display: inline-block; padding: 0.9rem 2.2rem; border: 1px solid currentColor; border-radius: 999px; text-decoration: none; color: inherit; }
+
+  @media (max-width: 749px) {
+    .cel-cols-2, .cel-cols-3, .cel-cols-4, .cel-list-cross { grid-template-columns: 1fr; }
+    .cel-flex, .cel-flex.reverse { flex-direction: column; }
+  }
+</style>
+
+<div class="cel-page">
+
+  <!-- Bannière -->
+  <div class="cel-section cel-center">
+    <h1>Celestetic</h1>
+    <p><em>La cosméceutique belge au service de l'esthétique, distribuée en Suisse par HopEstetic</em></p>
+  </div>
+
+<div class="cel-full-bleed">
+    <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Brand.png?v=1788962726" alt="Gamme de produits Celestetic présentée en institut">
+  </div>
+
+  <!-- 01, Notre histoire -->
+  <div class="cel-section">
+    <h2 class="cel-center">Une marque née d'une conviction scientifique</h2>
+
+    <p class="cel-center">En 2013, les entrepreneurs belges Bernard Van Acker et Gabriele Gavazzi fondent Celestetic avec une conviction simple : créer des soins qui allient l'exigence de la cosmétique à la rigueur de la science et inspirés par le concept de cosméceutique.</p>
+
+    <div class="cel-flex reverse" style="margin-top:3rem;">
+      <div>
+        <h3>Conception et Fabrication européenne</h3>
+        <p>Celestetic n'est pas seulement une marque : c'est un laboratoire qui développe lui-même ses appareils et ses formules, en Belgique et en Italie. Cette maîtrise complète de la conception à la fabrication garantit un contrôle constant sur la qualité et la traçabilité de chaque produit.</p>
+
+      </div>
+      <div>
+        <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Cosmetic-Manufacturers.jpg?v=1788963513" alt="Atelier de fabrication Celestetic en Belgique">
+      </div>
+    </div>
+  </div>
+
+  <!-- 02, Nos valeurs -->
+  <div class="cel-section">
+    <h2 class="cel-center">Trois exigences, aucun compromis</h2>
+
+    <div class="cel-cols-3">
+      <div class="cel-card">
+        <div class="cel-icon"><svg viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.4 9-8 11-4.6-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Transparence totale</h3>
+        <p>Celestetic se présente comme la seule marque au monde qui se veut totalement transparente quant à ses principes actifs. Les formules sont conçues par des médecins, chaque ingrédient et sa concentration sont communiqués sans zone d'ombre.</p>
+      </div>
+      <div class="cel-card">
+        <div class="cel-icon"><svg viewBox="0 0 24 24"><path d="M9 2v6L4 19a2 2 0 002 3h12a2 2 0 002-3l-5-11V2"/><path d="M9 2h6"/><path d="M7 15h10"/></svg></div>
+        <h3>Excellence scientifique</h3>
+        <p>Cette exigence de transparence est validée par plus de 13 études scientifiques, qui démontrent l'efficacité réelle des soins Celestetic.</p>
+      </div>
+      <div class="cel-card">
+        <div class="cel-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9C.6 8.1 2.4 4 6.5 4c2 0 3.5 1.2 5.5 3.5C14 5.2 15.5 4 17.5 4 21.6 4 23.4 8.1 21.5 12 19 16.5 12 21 12 21z"/></svg></div>
+        <h3>Soin universel</h3>
+        <p>Celestetic veut rendre l'excellence des soins esthétiques accessible à tous : tous les âges, tous les types de peau et tous les budgets.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cel-full-bleed">
+    <img src="" alt="Univers de la marque Celestetic, institut, soin, packaging">
+  </div>
+
+  <!-- 03, Certifications & preuves scientifiques -->
+  <div class="cel-section">
+    <div class="cel-flex top">
+      <div>
+        <h2>Une qualité prouvée, pas seulement affirmée</h2>
+        <p>Celestetic fabrique ses produits selon des normes de qualité pharmaceutique, et soutient chacune de ses promesses par des données cliniques.</p>
+      </div>
+      <div class="cel-stack">
+        <div class="cel-card cel-stat">
+          <div class="cel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
+          <div><strong>ISO 9001:2015</strong>Norme de management de la qualité</div>
+        </div>
+        <div class="cel-card cel-stat">
+          <div class="cel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
+          <div><strong>ISO 22716</strong>Bonnes pratiques de fabrication cosmétique</div>
+        </div>
+        <div class="cel-card cel-stat">
+          <div class="cel-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 5l5 4 4-6 4 8 3-3"/></svg></div>
+          <div><strong>13+</strong>Études scientifiques cliniques</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cel-flex" style="margin-top:3rem;">
+      <div>
+        <h3>Une reconnaissance internationale</h3>
+        <p>Les résultats cliniques et l'innovation de Celestetic ont été récompensés à plusieurs reprises :</p>
+        <ul class="cel-awards">
+          <li>ELLE International Beauty Award 2024, gamme H.A. Perfect</li>
+          <li>Cosmoprof India Award 2024, Hair Boost &amp; Hair Stamp</li>
+          <li>Belgian Beauty Award 2020, Active Peel</li>
+        </ul>
+        <p>Celestetic est aujourd'hui présente dans plus de 20 pays.</p>
+      </div>
+      <div>
+        <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Soins_Multi_technique.webp?v=1788963807" alt="Certificats ISO 9001:2015 et ISO 22716 de Celestetic">
+      </div>
+    </div>
+  </div>
+
+  <!-- 04, Les bienfaits -->
+  <div class="cel-section">
+    <h2>Une concentration active pensée pour des résultats visibles</h2>
+    <p>Les produits Celestetic sont formulés selon une approche cosméceutique : ils peuvent contenir jusqu'à 30 % de principes actifs, une concentration nettement supérieure à celle des cosmétiques classiques, pour des résultats visibles et mesurables sur la peau.</p>
+
+    <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Comparatif_des_principes_actifs_entre_celestetic_et_ses_concurents.png?v=1788964125" alt="Résultats visibles d'un soin Celestetic sur la peau" style="margin: 2rem 0;">
+
+    <div class="cel-flex reverse">
+      <div>
+        <h3>La technologie BIO-BLEND™</h3>
+        <p>Le cœur de l'innovation Celestetic repose sur la technologie BIO-BLEND™, qui associe :</p>
+        <ul class="cel-list-numbered">
+          <li><span class="cel-num">1</span><span>De l'acide hyaluronique breveté à bas poids moléculaire, pour une pénétration optimale dans la peau.</span></li>
+          <li><span class="cel-num">2</span><span>Des facteurs de croissance (EGF / Peptides), une découverte des professeurs Cohen et Levi-Montalcini, lauréats du prix Nobel en 1984.</span></li>
+          <li><span class="cel-num">3</span><span>Un procédé d'encapsulation qui garantit une stabilité des actifs pendant 2 ans.</span></li>
+        </ul>
+      </div>
+      <div>
+        <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/goute_serum.jpg?v=1788965690" alt="Texture d'un sérum Celestetic, produit phare de la marque">
+      </div>
+    </div>
+
+    <h3>Des formules pensées pour la sécurité de la peau</h3>
+    <p>Celestetic s'engage sur une liste précise d'ingrédients exclus de ses formules :</p>
+    <ul class="cel-list-cross">
+      <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Alcool, allergènes, microplastiques</li>
+      <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Colorants synthétiques</li>
+      <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Petrolatum &amp; silicones</li>
+      <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Formaldéhyde &amp; thiazolinones</li>
+      <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>SLS / SLES / DEA / TEA et tensioactifs agressifs</li>
+    </ul>
+    </div>
+
+<style>
+  .cel-results-title { text-transform: uppercase; font-weight: 700; font-size: 1.4em; margin-bottom: 2.5rem; }
+  .cel-results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+  .cel-badge { display: inline-block; background: #111; color: #fff; font-weight: 600; font-size: 0.85em; padding: 0.5rem 0.9rem; border-radius: 4px; margin-bottom: 1rem; }
+  .cel-results-grid p { font-size: 0.95em; margin-bottom: 1.5rem; }
+  .cel-ba-pair { display: flex; gap: 0.5rem; }
+  .cel-ba-slot { flex: 1 1 0; text-align: center; }
+  .cel-ba-slot .cel-ba-frame { border: 1px dashed color-mix(in srgb, currentColor 35%, transparent); border-radius: 4px; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 0.5rem; }
+  .cel-ba-slot img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+  .cel-ba-slot span { font-size: 0.8em; letter-spacing: 0.05em; opacity: 0.7; }
+
+  @media (max-width: 900px) {
+    .cel-results-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .cel-results-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="cel-section">
+  <h2 class="cel-results-title">Des résultats visibles</h2>
+
+  <div class="cel-results-grid">
+
+    <div>
+      <span class="cel-badge">Traitement anti-imperfection</span>
+      <p>Résultats après 4 séances de peeling <strong>Pure Peel</strong> ciblé anti-imperfection</p>
+      <div class="cel-ba-pair">
+        <div class="cel-ba-slot">
+          <div class="cel-ba-frame"><img src="" alt="Avant traitement anti-imperfection"></div>
+          <span>AVANT</span>
+        </div>
+        <div class="cel-ba-slot">
+          <div class="cel-ba-frame"><img src="" alt="Après traitement anti-imperfection"></div>
+          <span>APRÈS</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <span class="cel-badge">Traitement anti-âge</span>
+      <p>Résultats après 3 séances de <strong>Soin Multi-Techniques</strong> ciblé <em>anti-âge</em></p>
+      <div class="cel-ba-pair">
+        <div class="cel-ba-slot">
+          <div class="cel-ba-frame"><img src="" alt="Avant traitement anti-âge"></div>
+          <span>AVANT</span>
+        </div>
+        <div class="cel-ba-slot">
+          <div class="cel-ba-frame"><img src="" alt="Après traitement anti-âge"></div>
+          <span>APRÈS</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <span class="cel-badge">Traitement anti-taches</span>
+      <p>Résultats après 1 séance de <strong>Soin Multi-Techniques</strong> ciblé <em>anti-taches</em></p>
+      <div class="cel-ba-pair">
+        <div class="cel-ba-slot">
+          <div class="cel-ba-frame"><img src="" alt="Avant traitement anti-taches"></div>
+          <span>AVANT</span>
+        </div>
+        <div class="cel-ba-slot">
+          <div class="cel-ba-frame"><img src="" alt="Après traitement anti-taches"></div>
+          <span>APRÈS</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <span class="cel-badge">Traitement anti-déshydratation</span>
+      <p>Résultats après 3 séances de <strong>Soin Multi-Techniques</strong> ciblé <em>anti-déshydratation</em></p>
+      <div class="cel-ba-pair">
+        <div class="cel-ba-slot">
+          <div class="cel-ba-frame"><img src="" alt="Avant traitement anti-déshydratation"></div>
+          <span>AVANT</span>
+        </div>
+        <div class="cel-ba-slot">
+          <div class="cel-ba-frame"><img src="" alt="Après traitement anti-déshydratation"></div>
+          <span>APRÈS</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
