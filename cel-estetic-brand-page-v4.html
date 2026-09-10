@@ -19,7 +19,7 @@
   /* Les bordures/paddings ne débordent plus des largeurs fixées : les cadres s'alignent pile avec le texte */
   .cel-page, .cel-page *, .cel-page *::before, .cel-page *::after { box-sizing: border-box; }
 
-  .cel-page { max-width: var(--cel-page-max); margin: 0 auto; padding: 4rem var(--cel-page-pad); font-family: 'Poppins', sans-serif; line-height: 1.6; }
+  .cel-page { max-width: var(--cel-page-max); margin: 0 auto; padding: 0 var(--cel-page-pad) 4rem; font-family: 'Poppins', sans-serif; line-height: 1.6; }
   .cel-section { margin-bottom: var(--cel-space-section); }
   .cel-section:last-child { margin-bottom: 0; }
 
@@ -58,7 +58,7 @@
     padding: var(--cel-space-block) var(--cel-align-pad);
     background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 40%), linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,0) 40%);
   }
-  .cel-hero-overlay h1 { position: absolute; top: var(--cel-space-block); right: var(--cel-align-pad); left: var(--cel-align-pad); text-align: right; color: #fff; font-size: clamp(5rem, 12vw, 8rem); line-height: 1.05; margin: 0; }
+  .cel-hero-overlay h1 { position: absolute; top: calc(var(--cel-space-block) + 4rem); right: var(--cel-align-pad); left: var(--cel-align-pad); text-align: right; color: #fff; font-size: clamp(7.5rem, 18vw, 12rem); line-height: 1.05; margin: 0; }
   .cel-hero-overlay p { position: absolute; bottom: var(--cel-space-block); left: var(--cel-align-pad); text-align: left; color: #fff; margin: 0; font-size: clamp(0.875rem, 1.96vw, 1.575rem); white-space: nowrap; }
 
   .cel-section img { width: 100%; height: auto; border-radius: 4px; }
@@ -154,7 +154,7 @@
     .cel-flex, .cel-flex.reverse { flex-direction: column; }
     /* Le crop 16:9 devient trop bas pour le titre + sous-titre : on garde une hauteur minimale */
     .cel-hero-image img { aspect-ratio: auto; min-height: 420px; }
-    .cel-hero-overlay h1 { font-size: clamp(2.25rem, 10vw, 3.5rem); }
+    .cel-hero-overlay h1 { font-size: clamp(3.375rem, 15vw, 5.25rem); }
     /* Phrase trop longue pour tenir sur une ligne à cette largeur : on repasse à la ligne pour éviter tout débordement */
     .cel-hero-overlay p { font-size: clamp(0.7rem, 2.8vw, 1.05rem); white-space: normal; max-width: 85%; }
   }
@@ -258,7 +258,7 @@
   </div>
 
   <!-- 04, Les bienfaits -->
-  <div class="cel-section">
+  <div class="cel-section cel-band">
     <div class="cel-flex">
       <div class="cel-card-soft">
         <h2>Une concentration active pensée pour des résultats visibles</h2>
@@ -317,7 +317,7 @@
   }
 </style>
 
-<div class="cel-section cel-band">
+<div class="cel-section">
   <h2 class="cel-results-title">Des résultats visibles</h2>
 
   <div class="cel-results-grid">
