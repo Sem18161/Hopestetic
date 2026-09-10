@@ -74,22 +74,25 @@
   /* Les deux colonnes prennent la même hauteur : nécessaire pour que le calcul du débordement bas soit fiable */
   .cel-flex-img-sm { align-items: stretch; }
 
-  /* Étire l'image depuis son coin gauche jusqu'au bord de la page (ignore la marge du site), et depuis son coin
-     bas jusqu'au bas de la séparation grise (.cel-band) : asymétrie volontaire des deux côtés.
-     Un peu de largeur est retirée pour laisser un espace avec le texte voisin.
-     Hauteur en % explicite (pas top+bottom+auto) : une <img> est un élément remplacé, top/bottom ne l'étire pas,
-     sa hauteur resterait calculée depuis son propre ratio d'aspect.
-     +2x --cel-space-block : la propre marge basse de la ligne (.cel-flex) PLUS le padding bas de .cel-band. */
+  /* Étire l'image depuis son coin gauche jusqu'au bord de la page (ignore la marge du site) : asymétrie volontaire.
+     Cette ligne n'étant plus la dernière du bandeau gris, la hauteur reste celle de sa colonne (stretch), sans
+     chercher à rejoindre le bas de .cel-band. */
   img.cel-img-bleed-left {
     position: absolute; top: 0;
     left: calc(-1 * var(--cel-align-pad));
     width: calc(100% + var(--cel-align-pad) - 2rem);
-    height: calc(100% + (var(--cel-space-block) * 2));
+    height: 100%;
     max-width: none; object-fit: cover;
   }
   @media (max-width: 749px) {
     img.cel-img-bleed-left { position: static; width: 100%; height: auto; }
   }
+
+  /* L'image de BIO-BLEND remplit toute la hauteur de sa ligne (qui est la dernière du bandeau gris) :
+     c'est donc elle qui détermine visuellement où s'arrête la zone grise. Marge basse à 0 : seul le padding
+     de .cel-band donne l'espace final, pour que le gris s'arrête au plus près du bas de l'image. */
+  .cel-flex-fill-media { align-items: stretch; margin-bottom: 0; }
+  img.cel-img-fill { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .cel-quote { font-style: italic; border-left: 3px solid currentColor; padding-left: 1rem; margin: 1.5rem 0; }
   .cel-quote cite { display: block; font-style: normal; margin-top: 0.5rem; font-size: 0.9em; opacity: 0.8; }
@@ -211,9 +214,9 @@
     <img src="" alt="Univers de la marque Celestetic, institut, soin, packaging">
   </div>
 
-  <!-- 03, Certifications & preuves scientifiques -->
+  <!-- 03, Certifications & preuves scientifiques : le bandeau gris se prolonge jusqu'au bas de goute_serum.jpg -->
   <div class="cel-section cel-band">
-    <div class="cel-flex top">
+    <div class="cel-flex">
       <div>
         <h2>Une qualité prouvée, pas seulement affirmée</h2>
         <p>Celestetic fabrique ses produits selon des normes de qualité pharmaceutique, et soutient chacune de ses promesses par des données cliniques.</p>
@@ -249,10 +252,7 @@
         <img class="cel-img-bleed-left" src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Soins_Multi_technique.webp?v=1788963807" alt="Certificats ISO 9001:2015 et ISO 22716 de Celestetic">
       </div>
     </div>
-  </div>
 
-  <!-- 04, Les bienfaits -->
-  <div class="cel-section">
     <div class="cel-flex">
       <div class="cel-card-soft">
         <h2>Une concentration active pensée pour des résultats visibles</h2>
@@ -263,7 +263,7 @@
       </div>
     </div>
 
-    <div class="cel-flex reverse">
+    <div class="cel-flex reverse cel-flex-fill-media">
       <div>
         <h3>La technologie BIO-BLEND™</h3>
         <p>Le cœur de l'innovation Celestetic repose sur la technologie BIO-BLEND™, qui associe :</p>
@@ -274,10 +274,13 @@
         </ul>
       </div>
       <div>
-        <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/goute_serum.jpg?v=1788965690" alt="Texture d'un sérum Celestetic, produit phare de la marque">
+        <img class="cel-img-fill" src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/goute_serum.jpg?v=1788965690" alt="Texture d'un sérum Celestetic, produit phare de la marque">
       </div>
     </div>
+  </div>
 
+  <!-- 04, Les bienfaits (suite) -->
+  <div class="cel-section">
     <div class="cel-flex">
       <div>
         <h3>Des formules pensées pour la sécurité de la peau</h3>
@@ -291,7 +294,7 @@
         <li><em>SANS</em>SLS / SLES / DEA / TEA et tensioactifs agressifs</li>
       </ul>
     </div>
-    </div>
+  </div>
 
 <style>
   .cel-results-title { text-transform: uppercase; font-weight: 700; font-size: 1.4em; margin-bottom: 2.5rem; }
