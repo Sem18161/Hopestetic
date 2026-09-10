@@ -42,7 +42,7 @@
     background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 40%), linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,0) 40%);
   }
   .cel-hero-overlay h1 { position: absolute; top: var(--cel-space-block); right: var(--cel-align-pad); left: var(--cel-align-pad); text-align: right; color: #fff; font-size: clamp(5rem, 12vw, 8rem); line-height: 1.05; margin: 0; }
-  .cel-hero-overlay p { position: absolute; bottom: var(--cel-space-block); left: var(--cel-align-pad); text-align: left; color: #fff; margin: 0; max-width: 700px; font-size: clamp(1.25rem, 2.8vw, 2.25rem); }
+  .cel-hero-overlay p { position: absolute; bottom: var(--cel-space-block); left: var(--cel-align-pad); text-align: left; color: #fff; margin: 0; font-size: clamp(0.875rem, 1.96vw, 1.575rem); white-space: nowrap; }
 
   .cel-section img { width: 100%; height: auto; border-radius: 4px; }
 
@@ -76,10 +76,18 @@
   .cel-card .cel-icon svg { stroke: #fff; }
   /* Cadre rose clair qui suit le texte, ne prend pas toute la largeur de la page */
   .cel-card-soft { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; margin: var(--cel-space-block) 0; }
-  /* Variante qui englobe un bloc texte + image (donc plus large qu'un simple paragraphe) */
-  .cel-section > .cel-card-soft.cel-card-media { max-width: none; }
-  .cel-card-media .cel-flex { margin: 0; }
-  .cel-card-media img { display: block; }
+  /* Variante qui englobe un bloc texte + image (donc plus large qu'un simple paragraphe) :
+     l'image touche les bords de la case, seul le texte garde le padding */
+  .cel-section > .cel-card-soft.cel-card-media { max-width: none; padding: 0; overflow: hidden; }
+  .cel-card-media .cel-flex { margin: 0; gap: 2rem; align-items: stretch; }
+  .cel-card-media .cel-flex > *:first-child { padding: 1.75rem 0 1.75rem 1.75rem; display: flex; flex-direction: column; justify-content: center; }
+  .cel-card-media .cel-flex.reverse > *:first-child { padding: 1.75rem 1.75rem 1.75rem 0; }
+  .cel-card-media .cel-flex > *:last-child { padding: 0; }
+  .cel-card-media img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+  @media (max-width: 749px) {
+    .cel-card-media .cel-flex > *:first-child,
+    .cel-card-media .cel-flex.reverse > *:first-child { padding: 1.75rem; }
+  }
 
   .cel-stat { text-align: left; display: flex; gap: 1rem; align-items: center; }
   .cel-stat .cel-icon { margin-bottom: 0; flex: none; }
@@ -105,7 +113,8 @@
     /* Le crop 16:9 devient trop bas pour le titre + sous-titre : on garde une hauteur minimale */
     .cel-hero-image img { aspect-ratio: auto; min-height: 420px; }
     .cel-hero-overlay h1 { font-size: clamp(2.25rem, 10vw, 3.5rem); }
-    .cel-hero-overlay p { font-size: clamp(1rem, 4vw, 1.5rem); }
+    /* Phrase trop longue pour tenir sur une ligne à cette largeur : on repasse à la ligne pour éviter tout débordement */
+    .cel-hero-overlay p { font-size: clamp(0.7rem, 2.8vw, 1.05rem); white-space: normal; max-width: 85%; }
   }
 </style>
 
