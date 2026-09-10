@@ -67,15 +67,24 @@
   .cel-flex > * { flex: 1 1 0; min-width: 0; }
 
   /* Image réduite dans un bloc alterné, le texte prend le reste de la place */
-  .cel-flex-img-sm > *:last-child { flex: 0 1 320px; }
+  .cel-flex-img-sm > *:last-child { flex: 0 1 320px; position: relative; }
   @media (max-width: 749px) {
     .cel-flex-img-sm > *:last-child { flex: 1 1 auto; }
   }
+  /* Les deux colonnes prennent la même hauteur : nécessaire pour que le calcul du débordement bas soit fiable */
+  .cel-flex-img-sm { align-items: stretch; }
 
-  /* Étire l'image depuis son coin gauche jusqu'au bord de la page (ignore la marge du site), asymétrie volontaire */
-  img.cel-img-bleed-left { width: calc(100% + var(--cel-align-pad)); margin-left: calc(-1 * var(--cel-align-pad)); max-width: none; }
+  /* Étire l'image depuis son coin gauche jusqu'au bord de la page (ignore la marge du site), et depuis son coin
+     bas jusqu'au bas de la séparation grise (.cel-band) : asymétrie volontaire des deux côtés.
+     Un peu de largeur est retirée pour laisser un espace avec le texte voisin. */
+  img.cel-img-bleed-left {
+    position: absolute; top: 0; bottom: calc(-1 * var(--cel-space-block));
+    left: calc(-1 * var(--cel-align-pad));
+    width: calc(100% + var(--cel-align-pad) - 2rem);
+    height: auto; max-width: none; object-fit: cover;
+  }
   @media (max-width: 749px) {
-    img.cel-img-bleed-left { width: 100%; margin-left: 0; }
+    img.cel-img-bleed-left { position: static; width: 100%; height: auto; }
   }
 
   .cel-quote { font-style: italic; border-left: 3px solid currentColor; padding-left: 1rem; margin: 1.5rem 0; }
