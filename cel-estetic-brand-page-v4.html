@@ -17,7 +17,7 @@
   .cel-page { max-width: var(--cel-page-max); margin: 0 auto; padding: 4rem var(--cel-page-pad); font-family: 'Poppins', sans-serif; line-height: 1.6; }
   .cel-section { margin-bottom: var(--cel-space-section); }
   .cel-section:last-child { margin-bottom: 0; }
-  .cel-section > p, .cel-section > h2, .cel-section > h3, .cel-section > .cel-card-soft { max-width: 700px; }
+  .cel-section > p, .cel-section > h2, .cel-section > h3 { max-width: 700px; }
   .cel-center { text-align: center; margin-left: auto; margin-right: auto; }
 
   /* Rythme vertical harmonisé : même espace titre -> texte partout, et un espace net avant chaque nouveau bloc */
@@ -79,12 +79,6 @@
   .cel-card-soft { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; margin: var(--cel-space-block) 0; min-height: 17rem; display: flex; flex-direction: column; justify-content: center; }
   /* Cadre utilisé comme colonne de texte dans un bloc alterné : l'image reste hors du rectangle rose */
   .cel-flex > .cel-card-soft { margin: 0; }
-
-  /* Colonne image agrandie de 200% (x2) une seconde fois ; la case rose (flex:1 1 0) s'adapte automatiquement en retrait */
-  .cel-flex-img-xs > *:last-child { flex: 0 1 40%; min-width: 400px; }
-  @media (max-width: 749px) {
-    .cel-flex-img-xs > *:last-child { flex: 0 1 auto; width: 85%; max-width: 400px; margin: 0 auto; }
-  }
 
   .cel-stat { text-align: left; display: flex; gap: 1rem; align-items: center; }
   .cel-stat .cel-icon { margin-bottom: 0; flex: none; }
@@ -214,7 +208,7 @@
 
   <!-- 04, Les bienfaits -->
   <div class="cel-section">
-    <div class="cel-flex cel-flex-img-xs">
+    <div class="cel-flex">
       <div class="cel-card-soft">
         <h2>Une concentration active pensée pour des résultats visibles</h2>
         <p>Les produits Celestetic sont formulés selon une approche cosméceutique : ils peuvent contenir jusqu'à 30 % de principes actifs, une concentration nettement supérieure à celle des cosmétiques classiques, pour des résultats visibles et mesurables sur la peau.</p>
