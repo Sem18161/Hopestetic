@@ -27,7 +27,8 @@
      Padding horizontal à 0 : le contenu reste dans le flux normal de .cel-page (déjà marginé), seul le fond sort en pleine largeur. */
   .cel-band { position: relative; padding: var(--cel-space-block) 0; margin-bottom: calc(var(--cel-space-section) - var(--cel-space-block)); }
   /* Espace supplémentaire après "20 pays" (~4 lignes de texte) avant la section suivante */
-  .cel-band-extra-gap { margin-bottom: calc(var(--cel-space-section) - var(--cel-space-block) + 18rem); }
+  /* Espace en padding (donc gris clair, dans le bandeau), directement après le texte, pas en marge (blanc, après le bandeau) */
+  .cel-band-extra-gap { padding-bottom: calc(var(--cel-space-block) + 9rem); }
   .cel-band::before {
     content: ""; position: absolute; top: 0; bottom: 0; left: 50%; right: 50%;
     width: 100vw; margin-left: -50vw; margin-right: -50vw;
