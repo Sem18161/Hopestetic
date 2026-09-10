@@ -174,11 +174,33 @@
   @media (max-width: 749px) {
     .cel-cols-2, .cel-cols-3, .cel-cols-4, .cel-list-cross { grid-template-columns: 1fr; }
     .cel-flex, .cel-flex.reverse { flex-direction: column; }
+    /* flex: 1 1 0 partage la largeur en 2 colonnes égales en desktop (ligne horizontale) : en colonne
+       (empilé), ce même flex-basis à 0 s'applique à la hauteur et peut écraser un bloc (hauteur ~0, texte qui
+       déborde par-dessus le bloc suivant). En pile verticale, chaque bloc doit garder sa hauteur naturelle. */
+    .cel-flex > * { flex: 1 1 auto; }
     /* Le crop 16:9 devient trop bas pour le titre + sous-titre : on garde une hauteur minimale */
     .cel-hero-image img { aspect-ratio: auto; min-height: 420px; }
     .cel-hero-overlay h1 { font-size: clamp(3.375rem, 15vw, 5.25rem); }
     /* Phrase trop longue pour tenir sur une ligne à cette largeur : on repasse à la ligne pour éviter tout débordement */
     .cel-hero-overlay p { font-size: clamp(0.7rem, 2.8vw, 1.05rem); white-space: normal; max-width: 85%; }
+
+    /* Le padding-top du texte et le padding-bottom du bandeau ne servent qu'à compenser le débordement de
+       l'image (bleed), qui est désactivé sur mobile (l'image repasse en flux normal juste en-dessous du
+       texte) : sans ce reset, ils laissent un vide énorme et inutile avant "Une reconnaissance internationale"
+       et sous l'image. */
+    .cel-flex-img-sm > *:first-child { padding-top: 0; }
+    .cel-band-extra-gap { padding-bottom: var(--cel-space-block); }
+  }
+
+  @media (max-width: 480px) {
+    /* En-dessous de ~480px, les titres et cases prennent trop de place : on resserre encore. */
+    .cel-hero-overlay h1 { font-size: clamp(2.75rem, 16vw, 3.5rem); top: calc(var(--cel-space-block) + 1.5rem); }
+    .cel-page h2 { font-size: 1.35rem; }
+    .cel-page h3 { font-size: 1.1rem; }
+    .cel-card, .cel-card-light, .cel-card-soft { padding: 1.25rem; }
+    .cel-card-soft { min-height: 0; }
+    .cel-results-title { font-size: 1.15em; }
+    .cel-badge { font-size: 0.85em; padding: 0.55rem 0.8rem 0.55rem 0.9rem; }
   }
 </style>
 
