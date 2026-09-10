@@ -58,6 +58,10 @@
     .cel-flex-img-sm > *:last-child { flex: 1 1 auto; }
   }
 
+  /* Le texte adopte la même hauteur que l'image du bloc (plus de différence de taille entre les deux colonnes) */
+  .cel-flex-match-media { align-items: stretch; }
+  .cel-flex-match-media img { height: 100%; object-fit: cover; }
+
   .cel-quote { font-style: italic; border-left: 3px solid currentColor; padding-left: 1rem; margin: 1.5rem 0; }
   .cel-quote cite { display: block; font-style: normal; margin-top: 0.5rem; font-size: 0.9em; opacity: 0.8; }
 
@@ -74,11 +78,18 @@
   /* Cartes (valeurs, stats) : rose foncé plein, icônes et texte en clair pour le contraste */
   .cel-card { background: var(--cel-pink-dark); color: #fff; border-radius: 8px; padding: 1.75rem; }
   .cel-card .cel-icon svg { stroke: #fff; }
+  /* Variante rose claire d'une case (même forme que .cel-card), texte foncé pour le contraste */
+  .cel-card-light { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; }
   /* Cadre rose clair qui suit le texte, ne prend pas toute la largeur de la page.
      Hauteur alignée sur la case "Soin universel" (272px mesurés) pour une taille cohérente entre toutes les cases. */
   .cel-card-soft { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; margin: var(--cel-space-block) 0; min-height: 17rem; display: flex; flex-direction: column; justify-content: center; }
   /* Cadre utilisé comme colonne de texte dans un bloc alterné : l'image reste hors du rectangle rose */
   .cel-flex > .cel-card-soft { margin: 0; }
+
+  /* Liste à croix encadrée : chaque élément dans sa propre case rose foncé */
+  .cel-list-cross-boxed { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+  .cel-list-cross-boxed li { display: flex; gap: 0.6rem; align-items: center; }
+  .cel-list-cross-boxed svg { flex: none; width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
 
   .cel-stat { text-align: left; display: flex; gap: 1rem; align-items: center; }
   .cel-stat .cel-icon { margin-bottom: 0; flex: none; }
@@ -174,15 +185,15 @@
         <p>Celestetic fabrique ses produits selon des normes de qualité pharmaceutique, et soutient chacune de ses promesses par des données cliniques.</p>
       </div>
       <div class="cel-stack">
-        <div class="cel-card cel-stat">
+        <div class="cel-card-light cel-stat">
           <div class="cel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
           <div><strong>ISO 9001:2015</strong>Norme de management de la qualité</div>
         </div>
-        <div class="cel-card cel-stat">
+        <div class="cel-card-light cel-stat">
           <div class="cel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
           <div><strong>ISO 22716</strong>Bonnes pratiques de fabrication cosmétique</div>
         </div>
-        <div class="cel-card cel-stat">
+        <div class="cel-card-light cel-stat">
           <div class="cel-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 5l5 4 4-6 4 8 3-3"/></svg></div>
           <div><strong>13+</strong>Études scientifiques cliniques</div>
         </div>
@@ -218,7 +229,7 @@
       </div>
     </div>
 
-    <div class="cel-flex reverse">
+    <div class="cel-flex reverse cel-flex-match-media">
       <div>
         <h3>La technologie BIO-BLEND™</h3>
         <p>Le cœur de l'innovation Celestetic repose sur la technologie BIO-BLEND™, qui associe :</p>
@@ -234,22 +245,26 @@
     </div>
 
     <div class="cel-card-soft">
-      <h3>Des formules pensées pour la sécurité de la peau</h3>
-      <p>Celestetic s'engage sur une liste précise d'ingrédients exclus de ses formules :</p>
-      <ul class="cel-list-cross">
-        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Alcool, allergènes, microplastiques</li>
-        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Colorants synthétiques</li>
-        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Petrolatum &amp; silicones</li>
-        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Formaldéhyde &amp; thiazolinones</li>
-        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>SLS / SLES / DEA / TEA et tensioactifs agressifs</li>
-      </ul>
+      <div class="cel-flex">
+        <div>
+          <h3>Des formules pensées pour la sécurité de la peau</h3>
+          <p>Celestetic s'engage sur une liste précise d'ingrédients exclus de ses formules :</p>
+        </div>
+        <ul class="cel-list-cross-boxed">
+          <li class="cel-card"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Alcool, allergènes, microplastiques</li>
+          <li class="cel-card"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Colorants synthétiques</li>
+          <li class="cel-card"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Petrolatum &amp; silicones</li>
+          <li class="cel-card"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Formaldéhyde &amp; thiazolinones</li>
+          <li class="cel-card"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>SLS / SLES / DEA / TEA et tensioactifs agressifs</li>
+        </ul>
+      </div>
     </div>
     </div>
 
 <style>
   .cel-results-title { text-transform: uppercase; font-weight: 700; font-size: 1.4em; margin-bottom: 2.5rem; }
   .cel-results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
-  .cel-badge { display: inline-block; background: var(--cel-pink-dark); color: #fff; font-weight: 600; font-size: 0.85em; padding: 0.5rem 0.9rem; border-radius: 4px; margin-bottom: 1rem; }
+  .cel-badge { display: inline-block; background: var(--cel-pink-light); color: var(--cel-pink-dark); font-weight: 600; font-size: 0.85em; padding: 0.5rem 0.9rem; border-radius: 4px; margin-bottom: 1rem; }
   .cel-results-grid p { font-size: 0.95em; margin-bottom: 1.5rem; }
   .cel-ba-pair { display: flex; gap: 0.5rem; }
   .cel-ba-slot { flex: 1 1 0; text-align: center; }
