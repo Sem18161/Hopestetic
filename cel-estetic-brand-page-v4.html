@@ -69,8 +69,8 @@
   .cel-flex.top { align-items: flex-start; }
   .cel-flex > * { flex: 1 1 0; min-width: 0; }
 
-  /* Image réduite dans un bloc alterné, le texte prend le reste de la place */
-  .cel-flex-img-sm > *:last-child { flex: 0 1 320px; position: relative; }
+  /* Image réduite dans un bloc alterné, le texte prend le reste de la place. Colonne à 480px = 320px x1,5 */
+  .cel-flex-img-sm > *:last-child { flex: 0 1 480px; position: relative; }
   @media (max-width: 749px) {
     .cel-flex-img-sm > *:last-child { flex: 1 1 auto; }
   }
@@ -79,7 +79,7 @@
 
   /* Étire l'image depuis son coin gauche jusqu'au bord de la page (ignore la marge du site), et depuis son coin
      bas jusqu'au bas de la séparation grise (.cel-band) : asymétrie volontaire des deux côtés.
-     Un peu de largeur est retirée pour laisser un espace avec le texte voisin.
+     Largeur retirée à droite pour laisser un espace plus généreux avec le texte voisin.
      Hauteur en % explicite (pas top+bottom+auto) : une <img> est un élément remplacé, top/bottom ne l'étire pas,
      sa hauteur resterait calculée depuis son propre ratio d'aspect.
      +2x --cel-space-block : la propre marge basse de la ligne (.cel-flex) PLUS le padding bas de .cel-band,
@@ -87,7 +87,7 @@
   img.cel-img-bleed-left {
     position: absolute; top: 0;
     left: calc(-1 * var(--cel-align-pad));
-    width: calc(100% + var(--cel-align-pad) - 2rem);
+    width: calc(100% + var(--cel-align-pad) - 3.5rem);
     height: calc(100% + (var(--cel-space-block) * 2) + 9rem);
     max-width: none; object-fit: cover;
   }
@@ -217,7 +217,7 @@
 
   <!-- 03, Certifications & preuves scientifiques -->
   <div class="cel-section cel-band cel-band-extra-gap">
-    <div class="cel-flex top">
+    <div class="cel-flex">
       <div>
         <h2>Une qualité prouvée, pas seulement affirmée</h2>
         <p>Celestetic fabrique ses produits selon des normes de qualité pharmaceutique, et soutient chacune de ses promesses par des données cliniques.</p>
