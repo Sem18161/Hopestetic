@@ -276,12 +276,12 @@
 
 <style>
   .cel-results-title { text-transform: uppercase; font-weight: 700; font-size: 1.4em; margin-bottom: 2.5rem; }
-  /* 2x2 plutôt que 4 en ligne : chaque partie (texte + avant/après) a assez de place pour ne pas paraître compressée */
-  .cel-results-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3.5rem 5rem; }
+  .cel-results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
   /* Même taille de police que le texte en dessous, et même retrait à gauche (2 espaces) pour les deux, donc toujours alignés entre eux */
   .cel-badge { display: block; text-align: left; background: var(--cel-pink-light); color: #000; font-weight: 600; font-size: 0.95em; padding: 0.6rem 0.9rem 0.6rem 1rem; border-radius: 4px; margin-bottom: 1rem; }
   .cel-results-grid p { font-size: 0.95em; margin-bottom: 1.5rem; padding-left: 1rem; }
-  .cel-ba-pair { display: flex; gap: 0.5rem; }
+  /* Avant/Après empilés (plutôt que côte à côte) : chaque image garde toute la largeur de son bloc malgré les 4 blocs sur une ligne */
+  .cel-ba-pair { display: flex; flex-direction: column; gap: 0.5rem; }
   .cel-ba-slot { flex: 1 1 0; text-align: center; }
   .cel-ba-slot .cel-ba-frame { border: 1px dashed color-mix(in srgb, currentColor 35%, transparent); border-radius: 4px; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 0.5rem; }
   .cel-ba-slot img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
