@@ -9,6 +9,8 @@
     --cel-page-pad: 1rem;
     /* aligne le contenu qui sort du conteneur (bandeaux, cadres) sur le même bord que le texte du site */
     --cel-align-pad: max(var(--cel-page-pad), calc((100vw - var(--cel-page-max)) / 2 + var(--cel-page-pad)));
+    /* Teinte très légère (dérivée du gris de la bannière) pour rythmer la page sans concurrencer le rose */
+    --cel-bg-tint: color-mix(in srgb, var(--cel-hero-grey) 12%, white);
   }
 
   /* Les bordures/paddings ne débordent plus des largeurs fixées : les cadres s'alignent pile avec le texte */
@@ -17,6 +19,14 @@
   .cel-page { max-width: var(--cel-page-max); margin: 0 auto; padding: 4rem var(--cel-page-pad); font-family: 'Poppins', sans-serif; line-height: 1.6; }
   .cel-section { margin-bottom: var(--cel-space-section); }
   .cel-section:last-child { margin-bottom: 0; }
+
+  /* Bandeau de fond très léger en pleine largeur : casse l'effet "page blanche" entre les sections colorées */
+  .cel-band { position: relative; padding: var(--cel-space-block) var(--cel-align-pad); margin-bottom: calc(var(--cel-space-section) - var(--cel-space-block)); }
+  .cel-band::before {
+    content: ""; position: absolute; top: 0; bottom: 0; left: 50%; right: 50%;
+    width: 100vw; margin-left: -50vw; margin-right: -50vw;
+    background: var(--cel-bg-tint); z-index: -1;
+  }
   .cel-section > p, .cel-section > h2, .cel-section > h3 { max-width: 700px; }
   .cel-center { text-align: center; margin-left: auto; margin-right: auto; }
 
@@ -85,6 +95,10 @@
   /* Liste à croix encadrée : chaque élément dans sa propre case rose foncé (format compact) */
   .cel-list-cross-boxed { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
   .cel-list-cross-boxed li { display: flex; gap: 0.5rem; align-items: center; background: var(--cel-pink-dark); color: #fff; border-radius: 8px; padding: 0.65rem 1rem; font-size: 0.9em; }
+
+  /* Survol : la teinte de toutes les cases s'assombrit (~2 crans) pour accentuer l'information au passage de la souris */
+  .cel-card, .cel-card-light, .cel-card-soft, .cel-list-cross-boxed li, .cel-badge { transition: filter 0.2s ease; }
+  .cel-card:hover, .cel-card-light:hover, .cel-card-soft:hover, .cel-list-cross-boxed li:hover, .cel-badge:hover { filter: brightness(0.85); }
   .cel-list-cross-boxed svg { flex: none; width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
 
   .cel-stat { text-align: left; display: flex; gap: 1rem; align-items: center; }
@@ -147,7 +161,7 @@
   </div>
 
   <!-- 02, Nos valeurs -->
-  <div class="cel-section">
+  <div class="cel-section cel-band">
     <h2>Trois exigences, aucun compromis</h2>
 
     <div class="cel-cols-3">
@@ -174,7 +188,7 @@
   </div>
 
   <!-- 03, Certifications & preuves scientifiques -->
-  <div class="cel-section">
+  <div class="cel-section cel-band">
     <div class="cel-flex top">
       <div>
         <h2>Une qualité prouvée, pas seulement affirmée</h2>
@@ -275,7 +289,7 @@
   }
 </style>
 
-<div class="cel-section">
+<div class="cel-section cel-band">
   <h2 class="cel-results-title">Des résultats visibles</h2>
 
   <div class="cel-results-grid">
