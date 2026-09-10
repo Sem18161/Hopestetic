@@ -82,12 +82,13 @@
      Un peu de largeur est retirée pour laisser un espace avec le texte voisin.
      Hauteur en % explicite (pas top+bottom+auto) : une <img> est un élément remplacé, top/bottom ne l'étire pas,
      sa hauteur resterait calculée depuis son propre ratio d'aspect.
-     +2x --cel-space-block : la propre marge basse de la ligne (.cel-flex) PLUS le padding bas de .cel-band. */
+     +2x --cel-space-block : la propre marge basse de la ligne (.cel-flex) PLUS le padding bas de .cel-band,
+     +9rem : le padding bas supplémentaire de .cel-band-extra-gap, pour rejoindre le vrai bas de la section. */
   img.cel-img-bleed-left {
     position: absolute; top: 0;
     left: calc(-1 * var(--cel-align-pad));
     width: calc(100% + var(--cel-align-pad) - 2rem);
-    height: calc(100% + (var(--cel-space-block) * 2));
+    height: calc(100% + (var(--cel-space-block) * 2) + 9rem);
     max-width: none; object-fit: cover;
   }
   @media (max-width: 749px) {
