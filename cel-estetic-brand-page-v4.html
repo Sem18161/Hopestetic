@@ -76,19 +76,13 @@
   .cel-card .cel-icon svg { stroke: #fff; }
   /* Cadre rose clair qui suit le texte, ne prend pas toute la largeur de la page */
   .cel-card-soft { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; margin: var(--cel-space-block) 0; }
-  /* Variante qui englobe un bloc texte + image (donc plus large qu'un simple paragraphe) :
-     l'image touche les bords de la case, seul le texte garde le padding */
-  .cel-section > .cel-card-soft.cel-card-media { max-width: none; padding: 0; overflow: hidden; }
-  .cel-card-media .cel-flex { margin: 0; gap: 2rem; align-items: stretch; }
-  .cel-card-media .cel-flex > *:first-child { padding: 1.75rem 0 1.75rem 1.75rem; display: flex; flex-direction: column; justify-content: center; }
-  .cel-card-media .cel-flex.reverse > *:first-child { padding: 1.75rem 1.75rem 1.75rem 0; }
-  /* Colonne image aussi grande que la case (même hauteur, part égale avec le texte) */
-  .cel-card-media .cel-flex > *:last-child { padding: 0; }
-  /* object-fit: contain -> l'image entière reste visible, réduite pour tenir dans la case sans être coupée */
-  .cel-card-media img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 0; }
+  /* Cadre utilisé comme colonne de texte dans un bloc alterné : l'image reste hors du rectangle rose */
+  .cel-flex > .cel-card-soft { margin: 0; }
+
+  /* Colonne image à sa taille d'origine (petite), hors du cadre rose */
+  .cel-flex-img-xs > *:last-child { flex: 0 1 10%; min-width: 100px; }
   @media (max-width: 749px) {
-    .cel-card-media .cel-flex > *:first-child,
-    .cel-card-media .cel-flex.reverse > *:first-child { padding: 1.75rem; }
+    .cel-flex-img-xs > *:last-child { flex: 0 1 auto; width: 50%; max-width: 220px; margin: 0 auto; }
   }
 
   .cel-stat { text-align: left; display: flex; gap: 1rem; align-items: center; }
@@ -219,15 +213,13 @@
 
   <!-- 04, Les bienfaits -->
   <div class="cel-section">
-    <div class="cel-card-soft cel-card-media">
-      <div class="cel-flex">
-        <div>
-          <h2>Une concentration active pensée pour des résultats visibles</h2>
-          <p>Les produits Celestetic sont formulés selon une approche cosméceutique : ils peuvent contenir jusqu'à 30 % de principes actifs, une concentration nettement supérieure à celle des cosmétiques classiques, pour des résultats visibles et mesurables sur la peau.</p>
-        </div>
-        <div>
-          <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Comparatif_des_principes_actifs_entre_celestetic_et_ses_concurents.png?v=1788964125" alt="Résultats visibles d'un soin Celestetic sur la peau">
-        </div>
+    <div class="cel-flex cel-flex-img-xs">
+      <div class="cel-card-soft">
+        <h2>Une concentration active pensée pour des résultats visibles</h2>
+        <p>Les produits Celestetic sont formulés selon une approche cosméceutique : ils peuvent contenir jusqu'à 30 % de principes actifs, une concentration nettement supérieure à celle des cosmétiques classiques, pour des résultats visibles et mesurables sur la peau.</p>
+      </div>
+      <div>
+        <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Comparatif_des_principes_actifs_entre_celestetic_et_ses_concurents.png?v=1788964125" alt="Résultats visibles d'un soin Celestetic sur la peau">
       </div>
     </div>
 
