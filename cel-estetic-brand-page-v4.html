@@ -58,10 +58,6 @@
     .cel-flex-img-sm > *:last-child { flex: 1 1 auto; }
   }
 
-  /* Le texte adopte la même hauteur que l'image du bloc (plus de différence de taille entre les deux colonnes) */
-  .cel-flex-match-media { align-items: stretch; }
-  .cel-flex-match-media img { height: 100%; object-fit: cover; }
-
   .cel-quote { font-style: italic; border-left: 3px solid currentColor; padding-left: 1rem; margin: 1.5rem 0; }
   .cel-quote cite { display: block; font-style: normal; margin-top: 0.5rem; font-size: 0.9em; opacity: 0.8; }
 
@@ -219,7 +215,7 @@
 
   <!-- 04, Les bienfaits -->
   <div class="cel-section">
-    <div class="cel-flex cel-flex-match-media">
+    <div class="cel-flex">
       <div class="cel-card-soft">
         <h2>Une concentration active pensée pour des résultats visibles</h2>
         <p>Les produits Celestetic sont formulés selon une approche cosméceutique : ils peuvent contenir jusqu'à 30 % de principes actifs, une concentration nettement supérieure à celle des cosmétiques classiques, pour des résultats visibles et mesurables sur la peau.</p>
@@ -262,7 +258,8 @@
 <style>
   .cel-results-title { text-transform: uppercase; font-weight: 700; font-size: 1.4em; margin-bottom: 2.5rem; }
   .cel-results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
-  .cel-badge { display: block; text-align: left; background: var(--cel-pink-light); color: #000; font-weight: 600; font-size: 0.85em; padding: 0.5rem 0.9rem; border-radius: 4px; margin-bottom: 1rem; }
+  /* Même taille de police que le texte en dessous, et texte aligné sur le même bord gauche (pas de retrait à gauche) */
+  .cel-badge { display: block; text-align: left; background: var(--cel-pink-light); color: #000; font-weight: 600; font-size: 0.95em; padding: 0.5rem 0.9rem 0.5rem 0; border-radius: 4px; margin-bottom: 1rem; }
   .cel-results-grid p { font-size: 0.95em; margin-bottom: 1.5rem; }
   .cel-ba-pair { display: flex; gap: 0.5rem; }
   .cel-ba-slot { flex: 1 1 0; text-align: center; }
