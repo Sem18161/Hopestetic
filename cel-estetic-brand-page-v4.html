@@ -74,18 +74,24 @@
   @media (max-width: 749px) {
     .cel-flex-img-sm > *:last-child { flex: 1 1 auto; }
   }
-  /* Les deux colonnes prennent la même hauteur : nécessaire pour que le calcul du débordement bas soit fiable.
-     Le texte est ensuite centré verticalement à l'intérieur de cette hauteur, donc par rapport au centre de l'image. */
+  /* L'image ne déborde QUE vers le bas (son coin haut reste au niveau de la ligne) : son centre visuel est donc
+     plus bas que le centre de la ligne elle-même. Pour aligner le texte sur ce centre réel, on pousse le texte
+     vers le bas d'autant via un padding-top (même valeur que le débordement ajouté à l'image ci-dessous) au lieu
+     de le centrer dans sa propre hauteur naturelle, qui ignorerait ce débordement. */
   .cel-flex-img-sm { align-items: stretch; }
-  .cel-flex-img-sm > *:first-child { display: flex; flex-direction: column; justify-content: center; }
+  .cel-flex-img-sm > *:first-child {
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: calc((var(--cel-space-block) * 2) + 9rem);
+  }
 
   /* Étire l'image depuis son coin gauche jusqu'au bord de la page (ignore la marge du site), et depuis son coin
      bas jusqu'au bas de la séparation grise (.cel-band) : asymétrie volontaire des deux côtés.
-     Largeur retirée à droite pour laisser un espace plus généreux avec le texte voisin.
      Hauteur en % explicite (pas top+bottom+auto) : une <img> est un élément remplacé, top/bottom ne l'étire pas,
      sa hauteur resterait calculée depuis son propre ratio d'aspect.
      +2x --cel-space-block : la propre marge basse de la ligne (.cel-flex) PLUS le padding bas de .cel-band,
-     +9rem : le padding bas supplémentaire de .cel-band-extra-gap, pour rejoindre le vrai bas de la section. */
+     +9rem : le padding bas supplémentaire de .cel-band-extra-gap, pour rejoindre le vrai bas de la section.
+     Ce même total est aussi ce qui pousse le texte vers le bas ci-dessus : les deux restent donc alignés,
+     quelle que soit la hauteur naturelle du texte. */
   img.cel-img-bleed-left {
     position: absolute; top: 0;
     left: calc(-1 * var(--cel-align-pad));
