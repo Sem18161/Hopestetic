@@ -5,12 +5,16 @@
     --cel-hero-grey: #b5bec9;
     --cel-space-section: 5rem;
     --cel-space-block: 2.5rem;
+    --cel-page-max: 1440px;
+    --cel-page-pad: 1rem;
+    /* aligne le contenu qui sort du conteneur (bandeaux, cadres) sur le même bord que le texte du site */
+    --cel-align-pad: max(var(--cel-page-pad), calc((100vw - var(--cel-page-max)) / 2 + var(--cel-page-pad)));
   }
 
-  .cel-page { max-width: 1440px; margin: 0 auto; padding: 4rem 1rem; font-family: 'Poppins', sans-serif; line-height: 1.6; }
+  .cel-page { max-width: var(--cel-page-max); margin: 0 auto; padding: 4rem var(--cel-page-pad); font-family: 'Poppins', sans-serif; line-height: 1.6; }
   .cel-section { margin-bottom: var(--cel-space-section); }
   .cel-section:last-child { margin-bottom: 0; }
-  .cel-section > p, .cel-section > h2, .cel-section > h3,
+  .cel-section > p, .cel-section > h2, .cel-section > h3, .cel-section > .cel-card-soft,
   .cel-tinted > h1, .cel-tinted > h2, .cel-tinted > h3, .cel-tinted > p { max-width: 700px; }
   .cel-center { text-align: center; margin-left: auto; margin-right: auto; }
 
@@ -23,18 +27,24 @@
   .cel-section > h3:not(:first-child) { margin-top: var(--cel-space-block); }
   .cel-section > img { display: block; margin: var(--cel-space-block) 0; }
 
-  /* Bandeau plein largeur rose clair : titre + texte seuls, sans image, aligné à gauche */
-  .cel-tinted { background: var(--cel-pink-light); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: var(--cel-space-block) 1.5rem; text-align: left; }
+  /* Bandeau plein largeur rose clair : titre + texte seuls, sans image, aligné à gauche et sur le même axe que le reste du texte */
+  .cel-tinted { background: var(--cel-pink-light); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: var(--cel-space-block) var(--cel-align-pad); text-align: left; }
 
   /* Image pleine largeur, sort du conteneur */
   .cel-full-bleed { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-bottom: 5rem; }
   .cel-full-bleed img { width: 100%; height: auto; max-height: 65vh; object-fit: cover; display: block; }
 
-  /* Héro : le titre partage le fond de l'image du bas, les deux se prolongent sans coupure */
-  .cel-hero-section { margin-bottom: 0; }
-  .cel-hero-tinted { background: var(--cel-hero-grey); }
+  /* Héro : titre directement sur l'image, sans cadre, aligné avec le reste du texte */
   .cel-hero-image { margin-bottom: 5rem; }
   .cel-hero-image img { aspect-ratio: 16 / 9; max-height: none; object-fit: cover; background: var(--cel-hero-grey); }
+  .cel-hero-overlay {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: var(--cel-space-block) var(--cel-align-pad);
+    background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 65%);
+  }
+  .cel-hero-overlay h1 { color: #fff; font-size: clamp(2.5rem, 6vw, 4rem); margin: 0 0 0.75rem; max-width: 700px; }
+  .cel-hero-overlay p { color: #fff; margin: 0; max-width: 700px; }
 
   .cel-section img { width: 100%; height: auto; border-radius: 4px; }
 
@@ -43,6 +53,12 @@
   .cel-flex.reverse { flex-direction: row-reverse; }
   .cel-flex.top { align-items: flex-start; }
   .cel-flex > * { flex: 1 1 0; min-width: 0; }
+
+  /* Image réduite dans un bloc alterné, le texte prend le reste de la place */
+  .cel-flex-img-sm > *:last-child { flex: 0 1 320px; }
+  @media (max-width: 749px) {
+    .cel-flex-img-sm > *:last-child { flex: 1 1 auto; }
+  }
 
   .cel-quote { font-style: italic; border-left: 3px solid currentColor; padding-left: 1rem; margin: 1.5rem 0; }
   .cel-quote cite { display: block; font-style: normal; margin-top: 0.5rem; font-size: 0.9em; opacity: 0.8; }
@@ -60,7 +76,8 @@
   /* Cartes (valeurs, stats) : rose foncé plein, icônes et texte en clair pour le contraste */
   .cel-card { background: var(--cel-pink-dark); color: #fff; border-radius: 8px; padding: 1.75rem; }
   .cel-card .cel-icon svg { stroke: #fff; }
-  .cel-card-soft { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; }
+  /* Cadre rose clair qui suit le texte, ne prend pas toute la largeur de la page */
+  .cel-card-soft { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; margin: var(--cel-space-block) 0; }
 
   .cel-stat { text-align: left; display: flex; gap: 1rem; align-items: center; }
   .cel-stat .cel-icon { margin-bottom: 0; flex: none; }
@@ -88,16 +105,13 @@
 
 <div class="cel-page">
 
-  <!-- Bannière -->
-  <div class="cel-section cel-hero-section">
-    <div class="cel-tinted cel-hero-tinted">
+  <!-- Bannière : titre directement dans l'image -->
+  <div class="cel-full-bleed cel-hero-image">
+    <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Brand.png?v=1788962726" alt="Gamme de produits Celestetic présentée en institut">
+    <div class="cel-hero-overlay">
       <h1>Celestetic</h1>
       <p><em>La cosméceutique belge au service de l'esthétique, distribuée en Suisse par HopEstetic</em></p>
     </div>
-  </div>
-
-<div class="cel-full-bleed cel-hero-image">
-    <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Brand.png?v=1788962726" alt="Gamme de produits Celestetic présentée en institut">
   </div>
 
   <!-- 01, Notre histoire -->
@@ -169,7 +183,7 @@
       </div>
     </div>
 
-    <div class="cel-flex">
+    <div class="cel-flex reverse cel-flex-img-sm">
       <div>
         <h3>Une reconnaissance internationale</h3>
         <p>Les résultats cliniques et l'innovation de Celestetic ont été récompensés à plusieurs reprises :</p>
@@ -188,12 +202,15 @@
 
   <!-- 04, Les bienfaits -->
   <div class="cel-section">
-    <div class="cel-tinted">
-      <h2>Une concentration active pensée pour des résultats visibles</h2>
-      <p>Les produits Celestetic sont formulés selon une approche cosméceutique : ils peuvent contenir jusqu'à 30 % de principes actifs, une concentration nettement supérieure à celle des cosmétiques classiques, pour des résultats visibles et mesurables sur la peau.</p>
+    <div class="cel-flex">
+      <div>
+        <h2>Une concentration active pensée pour des résultats visibles</h2>
+        <p>Les produits Celestetic sont formulés selon une approche cosméceutique : ils peuvent contenir jusqu'à 30 % de principes actifs, une concentration nettement supérieure à celle des cosmétiques classiques, pour des résultats visibles et mesurables sur la peau.</p>
+      </div>
+      <div>
+        <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Comparatif_des_principes_actifs_entre_celestetic_et_ses_concurents.png?v=1788964125" alt="Résultats visibles d'un soin Celestetic sur la peau">
+      </div>
     </div>
-
-    <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Comparatif_des_principes_actifs_entre_celestetic_et_ses_concurents.png?v=1788964125" alt="Résultats visibles d'un soin Celestetic sur la peau">
 
     <div class="cel-flex reverse">
       <div>
@@ -210,15 +227,17 @@
       </div>
     </div>
 
-    <h3>Des formules pensées pour la sécurité de la peau</h3>
-    <p>Celestetic s'engage sur une liste précise d'ingrédients exclus de ses formules :</p>
-    <ul class="cel-list-cross">
-      <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Alcool, allergènes, microplastiques</li>
-      <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Colorants synthétiques</li>
-      <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Petrolatum &amp; silicones</li>
-      <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Formaldéhyde &amp; thiazolinones</li>
-      <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>SLS / SLES / DEA / TEA et tensioactifs agressifs</li>
-    </ul>
+    <div class="cel-card-soft">
+      <h3>Des formules pensées pour la sécurité de la peau</h3>
+      <p>Celestetic s'engage sur une liste précise d'ingrédients exclus de ses formules :</p>
+      <ul class="cel-list-cross">
+        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Alcool, allergènes, microplastiques</li>
+        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Colorants synthétiques</li>
+        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Petrolatum &amp; silicones</li>
+        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>Formaldéhyde &amp; thiazolinones</li>
+        <li><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>SLS / SLES / DEA / TEA et tensioactifs agressifs</li>
+      </ul>
+    </div>
     </div>
 
 <style>
