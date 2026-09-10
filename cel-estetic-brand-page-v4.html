@@ -67,29 +67,10 @@
   .cel-flex.top { align-items: flex-start; }
   .cel-flex > * { flex: 1 1 0; min-width: 0; }
 
-  /* Grande image qui occupe toute la hauteur de son bloc (colonnes étirées à la même hauteur), texte empilé en face.
-     Marge propre à 0 : c'est le padding de .cel-band qui gère l'espace avant/après, sans le doubler. */
-  .cel-flex-tall-media { align-items: stretch; margin: 0; }
-  .cel-flex-tall-media > *:last-child { position: relative; }
+  /* Image réduite de 50% (colonne à 320px au lieu d'un partage 50/50 ~650px) : les cases + le texte prennent le reste */
+  .cel-flex-img-half > *:first-child { flex: 0 1 320px; }
   @media (max-width: 749px) {
-    .cel-flex-tall-media { margin: 2.5rem 0; }
-  }
-
-  /* Étire l'image depuis son coin gauche jusqu'au bord de la page (ignore la marge du site), et depuis son coin
-     bas jusqu'au bas de la séparation grise (.cel-band) : asymétrie volontaire des deux côtés.
-     Un peu de largeur est retirée pour laisser un espace avec le texte voisin.
-     Hauteur en % explicite (pas top+bottom+auto) : une <img> est un élément remplacé, top/bottom ne l'étire pas,
-     sa hauteur resterait calculée depuis son propre ratio d'aspect.
-     +1x --cel-space-block : le padding bas de .cel-band (la ligne elle-même n'a plus de marge propre). */
-  img.cel-img-bleed-left {
-    position: absolute; top: 0;
-    left: calc(-1 * var(--cel-align-pad));
-    width: calc(100% + var(--cel-align-pad) - 2rem);
-    height: calc(100% + var(--cel-space-block));
-    max-width: none; object-fit: cover;
-  }
-  @media (max-width: 749px) {
-    img.cel-img-bleed-left { position: static; width: 100%; height: auto; }
+    .cel-flex-img-half > *:first-child { flex: 1 1 auto; }
   }
 
   .cel-quote { font-style: italic; border-left: 3px solid currentColor; padding-left: 1rem; margin: 1.5rem 0; }
@@ -212,12 +193,16 @@
     <img src="" alt="Univers de la marque Celestetic, institut, soin, packaging">
   </div>
 
-  <!-- 03, Certifications & preuves scientifiques : une seule grande image à gauche, tout le texte empilé à droite -->
+  <!-- 03, Certifications & preuves scientifiques : intro au-dessus, image réduite + cases à droite en dessous -->
   <div class="cel-section cel-band">
-    <div class="cel-flex reverse cel-flex-tall-media">
+    <h2>Une qualité prouvée, pas seulement affirmée</h2>
+    <p>Celestetic fabrique ses produits selon des normes de qualité pharmaceutique, et soutient chacune de ses promesses par des données cliniques.</p>
+
+    <div class="cel-flex cel-flex-img-half">
       <div>
-        <h2>Une qualité prouvée, pas seulement affirmée</h2>
-        <p>Celestetic fabrique ses produits selon des normes de qualité pharmaceutique, et soutient chacune de ses promesses par des données cliniques.</p>
+        <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Soins_Multi_technique.webp?v=1788963807" alt="Certificats ISO 9001:2015 et ISO 22716 de Celestetic">
+      </div>
+      <div>
         <div class="cel-stack">
           <div class="cel-card-light cel-stat">
             <div class="cel-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
@@ -240,9 +225,6 @@
           <li>Belgian Beauty Award 2020, Active Peel</li>
         </ul>
         <p>Celestetic est aujourd'hui présente dans plus de 20 pays.</p>
-      </div>
-      <div>
-        <img class="cel-img-bleed-left" src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Soins_Multi_technique.webp?v=1788963807" alt="Certificats ISO 9001:2015 et ISO 22716 de Celestetic">
       </div>
     </div>
   </div>
