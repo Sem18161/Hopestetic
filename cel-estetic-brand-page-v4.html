@@ -2,11 +2,12 @@
   :root {
     --cel-pink-light: #fee9ec;
     --cel-pink-dark: #65011e;
+    --cel-hero-grey: #b5bec9;
     --cel-space-section: 5rem;
     --cel-space-block: 2.5rem;
   }
 
-  .cel-page { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem; font-family: 'Poppins', sans-serif; line-height: 1.6; }
+  .cel-page { max-width: 1440px; margin: 0 auto; padding: 4rem 1rem; font-family: 'Poppins', sans-serif; line-height: 1.6; }
   .cel-section { margin-bottom: var(--cel-space-section); }
   .cel-section:last-child { margin-bottom: 0; }
   .cel-section > p, .cel-section > h2, .cel-section > h3,
@@ -22,12 +23,18 @@
   .cel-section > h3:not(:first-child) { margin-top: var(--cel-space-block); }
   .cel-section > img { display: block; margin: var(--cel-space-block) 0; }
 
-  /* Bandeau plein largeur rose clair : titre + texte seuls, sans image */
-  .cel-tinted { background: var(--cel-pink-light); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: var(--cel-space-block) 1.5rem; }
+  /* Bandeau plein largeur rose clair : titre + texte seuls, sans image, aligné à gauche */
+  .cel-tinted { background: var(--cel-pink-light); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: var(--cel-space-block) 1.5rem; text-align: left; }
 
   /* Image pleine largeur, sort du conteneur */
   .cel-full-bleed { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-bottom: 5rem; }
   .cel-full-bleed img { width: 100%; height: auto; max-height: 65vh; object-fit: cover; display: block; }
+
+  /* Héro : le titre partage le fond de l'image du bas, les deux se prolongent sans coupure */
+  .cel-hero-section { margin-bottom: 0; }
+  .cel-hero-tinted { background: var(--cel-hero-grey); }
+  .cel-hero-image { margin-bottom: 5rem; }
+  .cel-hero-image img { aspect-ratio: 16 / 9; max-height: none; object-fit: cover; background: var(--cel-hero-grey); }
 
   .cel-section img { width: 100%; height: auto; border-radius: 4px; }
 
@@ -82,20 +89,20 @@
 <div class="cel-page">
 
   <!-- Bannière -->
-  <div class="cel-section">
-    <div class="cel-tinted cel-center">
+  <div class="cel-section cel-hero-section">
+    <div class="cel-tinted cel-hero-tinted">
       <h1>Celestetic</h1>
       <p><em>La cosméceutique belge au service de l'esthétique, distribuée en Suisse par HopEstetic</em></p>
     </div>
   </div>
 
-<div class="cel-full-bleed">
+<div class="cel-full-bleed cel-hero-image">
     <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Brand.png?v=1788962726" alt="Gamme de produits Celestetic présentée en institut">
   </div>
 
   <!-- 01, Notre histoire -->
   <div class="cel-section">
-    <div class="cel-tinted cel-center">
+    <div class="cel-tinted">
       <h2>Une marque née d'une conviction scientifique</h2>
       <p>En 2013, les entrepreneurs belges Bernard Van Acker et Gabriele Gavazzi fondent Celestetic avec une conviction simple : créer des soins qui allient l'exigence de la cosmétique à la rigueur de la science et inspirés par le concept de cosméceutique.</p>
     </div>
