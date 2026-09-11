@@ -2,7 +2,6 @@
   :root {
     --cel-pink-light: #fee9ec;
     --cel-pink-dark: #65011e;
-    /* Teintes de survol : un vrai changement de couleur, pas juste plus sombre */
     --cel-pink-light-hover: #fad0d8;
     --cel-pink-dark-hover: #8a1338;
     --cel-hero-grey: #b5bec9;
@@ -10,24 +9,17 @@
     --cel-space-block: 2.5rem;
     --cel-page-max: 1440px;
     --cel-page-pad: 1rem;
-    /* aligne le contenu qui sort du conteneur (bandeaux, cadres) sur le même bord que le texte du site */
     --cel-align-pad: max(var(--cel-page-pad), calc((100vw - var(--cel-page-max)) / 2 + var(--cel-page-pad)));
-    /* Teinte très légère (dérivée du gris de la bannière) pour rythmer la page sans concurrencer le rose */
     --cel-bg-tint: color-mix(in srgb, var(--cel-hero-grey) 7%, white);
   }
 
-  /* Les bordures/paddings ne débordent plus des largeurs fixées : les cadres s'alignent pile avec le texte */
   .cel-page, .cel-page *, .cel-page *::before, .cel-page *::after { box-sizing: border-box; }
 
   .cel-page { max-width: var(--cel-page-max); margin: 0 auto; padding: 0 var(--cel-page-pad) 4rem; font-family: 'Poppins', sans-serif; line-height: 1.6; }
   .cel-section { margin-bottom: var(--cel-space-section); }
   .cel-section:last-child { margin-bottom: 0; }
 
-  /* Bandeau de fond très léger en pleine largeur : casse l'effet "page blanche" entre les sections colorées.
-     Padding horizontal à 0 : le contenu reste dans le flux normal de .cel-page (déjà marginé), seul le fond sort en pleine largeur. */
   .cel-band { position: relative; padding: var(--cel-space-block) 0; margin-bottom: calc(var(--cel-space-section) - var(--cel-space-block)); }
-  /* Espace supplémentaire après "20 pays" (~4 lignes de texte) avant la section suivante */
-  /* Espace en padding (donc gris clair, dans le bandeau), directement après le texte, pas en marge (blanc, après le bandeau) */
   .cel-band-extra-gap { padding-bottom: calc(var(--cel-space-block) + 9rem); }
   .cel-band::before {
     content: ""; position: absolute; top: 0; bottom: 0; left: 50%; right: 50%;
@@ -37,7 +29,6 @@
   .cel-section > p, .cel-section > h2, .cel-section > h3 { max-width: 700px; }
   .cel-center { text-align: center; margin-left: auto; margin-right: auto; }
 
-  /* Rythme vertical harmonisé : même espace titre -> texte partout, et un espace net avant chaque nouveau bloc */
   .cel-page h1 { margin: 0 0 1.5rem; line-height: 1.15; }
   .cel-page h2 { margin: 0 0 1rem; line-height: 1.2; }
   .cel-page h3 { margin: 0 0 0.75rem; line-height: 1.3; }
@@ -46,11 +37,9 @@
   .cel-section > h3:not(:first-child) { margin-top: var(--cel-space-block); }
   .cel-section > img { display: block; margin: var(--cel-space-block) 0; }
 
-  /* Image pleine largeur, sort du conteneur */
   .cel-full-bleed { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-bottom: 5rem; }
   .cel-full-bleed img { width: 100%; height: auto; max-height: 65vh; object-fit: cover; display: block; }
 
-  /* Héro : titre directement sur l'image, sans cadre. Titre en haut à droite, sous-titre en bas à gauche */
   .cel-hero-image { margin-bottom: 5rem; }
   .cel-hero-image img { aspect-ratio: 16 / 9; max-height: none; object-fit: cover; background: var(--cel-hero-grey); }
   .cel-hero-overlay {
@@ -61,9 +50,6 @@
   .cel-hero-overlay h1 { position: absolute; top: calc(var(--cel-space-block) + 4rem); right: var(--cel-align-pad); left: var(--cel-align-pad); text-align: right; color: #fff; font-size: clamp(7.5rem, 18vw, 12rem); line-height: 1.05; margin: 0; }
   .cel-hero-overlay p { position: absolute; bottom: var(--cel-space-block); left: var(--cel-align-pad); text-align: left; color: #fff; margin: 0; font-size: clamp(0.875rem, 1.96vw, 1.575rem); white-space: nowrap; }
 
-  /* Animations d'entrée au chargement : le titre en simple fondu, le sous-titre en apparition + léger
-     glissement vers le haut (effet différent, pour le distinguer du titre). Le sous-titre est coupé en deux
-     segments qui apparaissent l'un après l'autre avec une vraie pause de 0,5s entre les deux départs. */
   @keyframes cel-fade-in { from { opacity: 0; } to { opacity: 1; } }
   @keyframes cel-rise-in { from { opacity: 0; transform: translateY(0.75rem); } to { opacity: 1; transform: translateY(0); } }
   .cel-hero-overlay h1 { opacity: 0; animation: cel-fade-in 1.1s ease-out forwards; }
@@ -79,35 +65,21 @@
 
   .cel-section img { width: 100%; height: auto; border-radius: 4px; }
 
-  /* Blocs alternés image / texte */
   .cel-flex { display: flex; gap: 3rem; align-items: center; margin: 2.5rem 0; }
   .cel-flex.reverse { flex-direction: row-reverse; }
   .cel-flex.top { align-items: flex-start; }
   .cel-flex > * { flex: 1 1 0; min-width: 0; }
 
-  /* Image réduite dans un bloc alterné, le texte prend le reste de la place. Colonne à 480px = 320px x1,5 */
   .cel-flex-img-sm > *:last-child { flex: 0 1 480px; position: relative; }
   @media (max-width: 749px) {
     .cel-flex-img-sm > *:last-child { flex: 1 1 auto; }
   }
-  /* L'image ne déborde QUE vers le bas (son coin haut reste au niveau de la ligne) : son centre visuel est donc
-     plus bas que le centre de la ligne elle-même. Pour aligner le texte sur ce centre réel, on pousse le texte
-     vers le bas d'autant via un padding-top (même valeur que le débordement ajouté à l'image ci-dessous) au lieu
-     de le centrer dans sa propre hauteur naturelle, qui ignorerait ce débordement. */
   .cel-flex-img-sm { align-items: stretch; }
   .cel-flex-img-sm > *:first-child {
     display: flex; flex-direction: column; justify-content: center;
     padding-top: calc((var(--cel-space-block) * 2) + 9rem);
   }
 
-  /* Étire l'image depuis son coin gauche jusqu'au bord de la page (ignore la marge du site), et depuis son coin
-     bas jusqu'au bas de la séparation grise (.cel-band) : asymétrie volontaire des deux côtés.
-     Hauteur en % explicite (pas top+bottom+auto) : une <img> est un élément remplacé, top/bottom ne l'étire pas,
-     sa hauteur resterait calculée depuis son propre ratio d'aspect.
-     +2x --cel-space-block : la propre marge basse de la ligne (.cel-flex) PLUS le padding bas de .cel-band,
-     +9rem : le padding bas supplémentaire de .cel-band-extra-gap, pour rejoindre le vrai bas de la section.
-     Ce même total est aussi ce qui pousse le texte vers le bas ci-dessus : les deux restent donc alignés,
-     quelle que soit la hauteur naturelle du texte. */
   img.cel-img-bleed-left {
     position: absolute; top: 0;
     left: calc(-1 * var(--cel-align-pad));
@@ -122,7 +94,6 @@
   .cel-quote { font-style: italic; border-left: 3px solid currentColor; padding-left: 1rem; margin: 1.5rem 0; }
   .cel-quote cite { display: block; font-style: normal; margin-top: 0.5rem; font-size: 0.9em; opacity: 0.8; }
 
-  /* Icônes */
   .cel-icon { width: 40px; height: 40px; margin-bottom: 0.75rem; }
   .cel-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.5; }
 
@@ -132,25 +103,17 @@
   .cel-cols-4 { grid-template-columns: repeat(4, 1fr); }
   .cel-stack { display: flex; flex-direction: column; gap: 1.25rem; }
 
-  /* Cartes (valeurs, stats) : rose foncé plein, icônes et texte en clair pour le contraste */
   .cel-card { background: var(--cel-pink-dark); color: #fff; border-radius: 8px; padding: 1.75rem; }
   .cel-card .cel-icon svg { stroke: #fff; }
-  /* Titre ET texte du corps en blanc explicitement (au lieu de compter uniquement sur l'héritage du color du parent) */
   .cel-card h3, .cel-card p { color: #fff; }
-  /* Variante rose claire d'une case (même forme que .cel-card), texte foncé pour le contraste */
   .cel-card-light { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; }
-  /* Cadre rose clair qui suit le texte, ne prend pas toute la largeur de la page.
-     Hauteur alignée sur la case "Soin universel" (272px mesurés) pour une taille cohérente entre toutes les cases. */
   .cel-card-soft { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; margin: var(--cel-space-block) 0; min-height: 17rem; display: flex; flex-direction: column; justify-content: center; }
-  /* Cadre utilisé comme colonne de texte dans un bloc alterné : l'image reste hors du rectangle rose */
   .cel-flex > .cel-card-soft { margin: 0; }
 
-  /* Liste "SANS ..." encadrée : chaque élément dans sa propre case rose foncé (format compact) */
   .cel-list-cross-boxed { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
   .cel-list-cross-boxed li { display: flex; gap: 0.5rem; align-items: center; background: var(--cel-pink-dark); color: #fff; border-radius: 8px; padding: 0.65rem 1rem; font-size: 0.9em; }
   .cel-list-cross-boxed em { font-style: italic; font-weight: 700; flex: none; }
 
-  /* Survol : léger changement de teinte (pas un simple assombrissement) + le texte grossit */
   .cel-card, .cel-card-light, .cel-card-soft, .cel-list-cross-boxed li, .cel-badge { transition: background-color 0.2s ease, transform 0.2s ease; transform: scale(1); }
   .cel-card:hover, .cel-list-cross-boxed li:hover { background: var(--cel-pink-dark-hover); transform: scale(1.06); }
   .cel-card-light:hover, .cel-card-soft:hover, .cel-badge:hover { background: var(--cel-pink-light-hover); transform: scale(1.06); }
@@ -176,43 +139,21 @@
   @media (max-width: 749px) {
     .cel-cols-2, .cel-cols-3, .cel-cols-4, .cel-list-cross { grid-template-columns: 1fr; }
     .cel-flex, .cel-flex.reverse { flex-direction: column; }
-    /* flex: 1 1 0 partage la largeur en 2 colonnes égales en desktop (ligne horizontale) : en colonne
-       (empilé), ce même flex-basis à 0 s'applique à la hauteur et peut écraser un bloc (hauteur ~0, texte qui
-       déborde par-dessus le bloc suivant). En pile verticale, chaque bloc doit garder sa hauteur naturelle. */
     .cel-flex > * { flex: 1 1 auto; }
-    /* Le crop 16:9 devient trop bas pour le titre + sous-titre : on garde une hauteur minimale */
     .cel-hero-image img { aspect-ratio: auto; min-height: 420px; }
     .cel-hero-overlay h1 { font-size: clamp(3.375rem, 15vw, 5.25rem); }
-    /* Phrase trop longue pour tenir sur une ligne à cette largeur : on repasse à la ligne pour éviter tout débordement */
     .cel-hero-overlay p { font-size: clamp(0.7rem, 2.8vw, 1.05rem); white-space: normal; max-width: 85%; }
 
-    /* Le padding-top du texte et le padding-bottom du bandeau ne servent qu'à compenser le débordement de
-       l'image (bleed), qui est désactivé sur mobile (l'image repasse en flux normal juste en-dessous du
-       texte) : sans ce reset, ils laissent un vide énorme et inutile avant "Une reconnaissance internationale"
-       et sous l'image. */
     .cel-flex-img-sm > *:first-child { padding-top: 0; }
     .cel-band-extra-gap { padding-bottom: var(--cel-space-block); }
 
-    /* Uniformise toute la typo du site sur mobile : une seule base (14px) pour .cel-page, dont héritent
-       tous les textes qui n'ont pas leur propre font-size (paragraphes, listes...) ou qui sont exprimés
-       en em (badges, citations...) — ils se mettent tous à l'échelle depuis cette même valeur au lieu
-       d'avoir chacun leur propre taille absolue. Les h3 sont fixés à 18px (plus spécifique que .cel-page
-       seul, donc pas concernés par l'héritage de 14px). */
     .cel-page { font-size: 14px; }
     .cel-page h3 { font-size: 18px; }
-    /* Ces deux textes de lecture avaient leur propre taille en em (0.95em / 0.9em) : ramenés eux aussi
-       à 14px pile pour rester alignés avec le reste du corps de texte.
-       .cel-page ajouté devant .cel-results-grid p : sans lui, cette règle a la même spécificité que
-       la règle non conditionnelle plus bas dans le fichier (0,0,1,1) et perd face à elle par ordre
-       de source, malgré la media query. */
     .cel-page .cel-results-grid p, .cel-list-cross-boxed li { font-size: 14px; }
   }
 
   @media (max-width: 480px) {
-    /* En-dessous de ~480px, les titres et cases prennent trop de place : on resserre encore. */
     .cel-hero-overlay h1 { font-size: clamp(2.75rem, 16vw, 3.5rem); top: calc(var(--cel-space-block) + 1.5rem); }
-    /* Les titres rétrécissaient sur téléphone alors que le corps du texte gardait sa taille normale :
-       effet déséquilibré (titre à peine plus grand que le texte). On regonfle les titres de 2pt. */
     .cel-page h2 { font-size: calc(1.35rem + 2pt); }
     .cel-card, .cel-card-light, .cel-card-soft { padding: 1.25rem; }
     .cel-card-soft { min-height: 0; }
@@ -223,7 +164,6 @@
 
 <div class="cel-page">
 
-  <!-- Bannière : titre directement dans l'image -->
   <div class="cel-full-bleed cel-hero-image">
     <img src="https://cdn.shopify.com/s/files/1/0783/1840/3809/files/Brand.png?v=1789122392" alt="Gamme de produits Celestetic présentée en institut">
     <div class="cel-hero-overlay">
@@ -232,7 +172,6 @@
     </div>
   </div>
 
-  <!-- 01, Notre histoire -->
   <div class="cel-section">
     <div class="cel-card-soft">
       <h2>Une marque née d'une conviction scientifique</h2>
@@ -251,7 +190,6 @@
     </div>
   </div>
 
-  <!-- 02, Nos valeurs -->
   <div class="cel-section cel-band">
     <h2>Trois exigences, aucun compromis</h2>
 
@@ -274,7 +212,6 @@
     </div>
   </div>
 
-  <!-- 03, Certifications & preuves scientifiques : "Une qualité prouvée" en blanc -->
   <div class="cel-section">
     <div class="cel-flex">
       <div>
@@ -298,7 +235,6 @@
     </div>
   </div>
 
-  <!-- Une reconnaissance internationale : reste en gris -->
   <div class="cel-section cel-band cel-band-extra-gap">
     <div class="cel-flex reverse cel-flex-img-sm">
       <div>
@@ -317,7 +253,6 @@
     </div>
   </div>
 
-  <!-- 04, Les bienfaits -->
   <div class="cel-section">
     <div class="cel-flex">
       <div class="cel-card-soft">
@@ -345,7 +280,6 @@
     </div>
   </div>
 
-  <!-- Des formules pensées pour la sécurité de la peau, seule à rester en gris -->
   <div class="cel-section cel-band">
     <div class="cel-flex">
       <div>
@@ -365,10 +299,8 @@
 <style>
   .cel-results-title { text-transform: uppercase; font-weight: 700; font-size: 1.4em; margin-bottom: 2.5rem; }
   .cel-results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
-  /* Même taille de police que le texte en dessous, et même retrait à gauche (2 espaces) pour les deux, donc toujours alignés entre eux */
   .cel-badge { display: block; text-align: left; background: var(--cel-pink-light); color: #000; font-weight: 600; font-size: 0.95em; padding: 0.6rem 0.9rem 0.6rem 1rem; border-radius: 4px; margin-bottom: 1rem; }
   .cel-results-grid p { font-size: 0.95em; margin-bottom: 1.5rem; padding-left: 1rem; }
-  /* Avant/Après côte à côte : écart serré dans la paire (0.5rem), écart plus grand entre deux paires (gap de la grille) */
   .cel-ba-pair { display: flex; gap: 0.5rem; }
   .cel-ba-slot { flex: 1 1 0; text-align: center; }
   .cel-ba-slot .cel-ba-frame { border: 1px dashed color-mix(in srgb, currentColor 35%, transparent); border-radius: 4px; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0 auto 0.5rem; max-width: 104px; }
