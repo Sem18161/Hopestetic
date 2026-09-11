@@ -135,6 +135,8 @@
   /* Cartes (valeurs, stats) : rose foncé plein, icônes et texte en clair pour le contraste */
   .cel-card { background: var(--cel-pink-dark); color: #fff; border-radius: 8px; padding: 1.75rem; }
   .cel-card .cel-icon svg { stroke: #fff; }
+  /* Titre ET texte du corps en blanc explicitement (au lieu de compter uniquement sur l'héritage du color du parent) */
+  .cel-card h3, .cel-card p { color: #fff; }
   /* Variante rose claire d'une case (même forme que .cel-card), texte foncé pour le contraste */
   .cel-card-light { background: var(--cel-pink-light); border-radius: 8px; padding: 1.75rem; }
   /* Cadre rose clair qui suit le texte, ne prend pas toute la largeur de la page.
@@ -195,8 +197,10 @@
   @media (max-width: 480px) {
     /* En-dessous de ~480px, les titres et cases prennent trop de place : on resserre encore. */
     .cel-hero-overlay h1 { font-size: clamp(2.75rem, 16vw, 3.5rem); top: calc(var(--cel-space-block) + 1.5rem); }
-    .cel-page h2 { font-size: 1.35rem; }
-    .cel-page h3 { font-size: 1.1rem; }
+    /* Les titres rétrécissaient sur téléphone alors que le corps du texte gardait sa taille normale :
+       effet déséquilibré (titre à peine plus grand que le texte). On regonfle les titres de 2pt. */
+    .cel-page h2 { font-size: calc(1.35rem + 2pt); }
+    .cel-page h3 { font-size: calc(1.1rem + 2pt); }
     .cel-card, .cel-card-light, .cel-card-soft { padding: 1.25rem; }
     .cel-card-soft { min-height: 0; }
     .cel-results-title { font-size: 1.15em; }
