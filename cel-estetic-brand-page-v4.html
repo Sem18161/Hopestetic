@@ -200,7 +200,11 @@
     /* Les titres rétrécissaient sur téléphone alors que le corps du texte gardait sa taille normale :
        effet déséquilibré (titre à peine plus grand que le texte). On regonfle les titres de 2pt. */
     .cel-page h2 { font-size: calc(1.35rem + 2pt); }
-    .cel-page h3 { font-size: calc(1.1rem + 2pt); }
+    /* Le h3 restait mal proportionné par rapport au corps du texte : on échange leurs tailles
+       (le h3 prend l'ancienne taille du corps de texte, 1rem ; le corps de texte prend l'ancienne
+       taille du h3, calc(1.1rem + 2pt)). */
+    .cel-page h3 { font-size: 1rem; }
+    .cel-page p { font-size: calc(1.1rem + 2pt); }
     .cel-card, .cel-card-light, .cel-card-soft { padding: 1.25rem; }
     .cel-card-soft { min-height: 0; }
     .cel-results-title { font-size: 1.15em; }
