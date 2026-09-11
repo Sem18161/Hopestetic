@@ -193,9 +193,19 @@
     .cel-flex-img-sm > *:first-child { padding-top: 0; }
     .cel-band-extra-gap { padding-bottom: var(--cel-space-block); }
 
-    /* Titre h3 toujours 2pt au-dessus du corps de texte, sur toute la plage mobile. */
-    .cel-page p { font-size: 1rem; }
-    .cel-page h3 { font-size: calc(1rem + 2pt); }
+    /* Uniformise toute la typo du site sur mobile : une seule base (14px) pour .cel-page, dont héritent
+       tous les textes qui n'ont pas leur propre font-size (paragraphes, listes...) ou qui sont exprimés
+       en em (badges, citations...) — ils se mettent tous à l'échelle depuis cette même valeur au lieu
+       d'avoir chacun leur propre taille absolue. Les h3 sont fixés à 18px (plus spécifique que .cel-page
+       seul, donc pas concernés par l'héritage de 14px). */
+    .cel-page { font-size: 14px; }
+    .cel-page h3 { font-size: 18px; }
+    /* Ces deux textes de lecture avaient leur propre taille en em (0.95em / 0.9em) : ramenés eux aussi
+       à 14px pile pour rester alignés avec le reste du corps de texte.
+       .cel-page ajouté devant .cel-results-grid p : sans lui, cette règle a la même spécificité que
+       la règle non conditionnelle plus bas dans le fichier (0,0,1,1) et perd face à elle par ordre
+       de source, malgré la media query. */
+    .cel-page .cel-results-grid p, .cel-list-cross-boxed li { font-size: 14px; }
   }
 
   @media (max-width: 480px) {
